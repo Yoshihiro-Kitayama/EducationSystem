@@ -30,6 +30,5 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('grades_clear_checks');
-        
     }
 };
