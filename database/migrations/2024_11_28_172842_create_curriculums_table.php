@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('curriculums', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id',10);
             $table->string('title',255);
             $table->string('thumbnail',255)->nullable();
             $table->longText('description')->nullable();

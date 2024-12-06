@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('grades_clear_checks', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id',10);
             $table->unsignedBigInteger('users_id');
             $table->unsignedBigInteger('grade_id');
             $table->boolean('clear_flg')->default(0);
