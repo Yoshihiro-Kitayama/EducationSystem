@@ -15,8 +15,8 @@ use App\Http\Controllers\DeliveryController;
 |
 */
 
-Route::post('/curriculum_edit/{grade_id}/update', [CurriculumController::class, 'update'])->name('curriculum.update');
 Route::get('/curriculum_list/{grade_id}', [CurriculumController::class, 'index'])->name('show.curriculum.list');
 Route::get('/curriculum_edit/{id}', [CurriculumController::class, 'edit'])->name('show.curriculum.edit');
-Route::get('/delivery/{grade_id}/edit', [DeliveryController::class, 'edit'])->name('delivery.edit');
-Route::post('/delivery/{grade_id}/update', [DeliveryController::class, 'update'])->name('delivery.update');
+Route::post('/curriculum_edit/{grade_id}', [CurriculumController::class, 'update'])->name('curriculum.update');
+Route::get('/delivery_edit/{curriculums_id}', [DeliveryController::class, 'edit'])->name('delivery.edit');
+Route::post('/delivery_edit/{curriculums_id}', [DeliveryController::class, 'update'])->name('delivery.update');

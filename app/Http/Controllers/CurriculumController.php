@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Curriculum;
-use App\Models\DeliveryTime;
 use App\Models\Grade;
 use Illuminate\Http\Request;
-use Ramsey\Uuid\Type\Integer;
 
 class CurriculumController extends Controller
 {
