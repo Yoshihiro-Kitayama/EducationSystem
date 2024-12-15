@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Curriculum;
 use App\Models\Grade;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CurriculumController extends Controller
 {
@@ -63,6 +64,7 @@ class CurriculumController extends Controller
         if ($request->hasFile('thumbnail')) {
             $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
             $curriculum->thumbnail = $thumbnailPath;
+            $url = Storage::url($thumbnailPath);
         }
 
         // データの更新
@@ -77,7 +79,7 @@ class CurriculumController extends Controller
         // 更新を保存
         $curriculum->save();
 
-        return redirect()->route('show.curriculum.list',['grade_id' => $grade_id])->with('success', 'カリキュラムが更新されました');
+        return redirect()->route('show.curriculum.list',['grade_id' => $curriculum->grade_id])->with('success', 'カリキュラムが更新されました');
     }
 
     public function create()

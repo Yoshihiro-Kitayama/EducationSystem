@@ -14,6 +14,7 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="{{ asset('css/list.css') }}">
 </head>
 <body>
     <header>
@@ -33,7 +34,7 @@
         <h1>{{ $selectedGrade->name }}のカリキュラム一覧</h1>
             @foreach ($curriculums as $curriculum) 
                 <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt={{ $curriculum->thumbnail }}>
+                    <img src="{{ asset('storage/' . $curriculum->thumbnail) }}" class="card-img-top" alt="サムネイル">
                     <div class="card-body">
                         <h5 class="card-title">{{ $curriculum->title }}</h5>
                         <p class="card-text">

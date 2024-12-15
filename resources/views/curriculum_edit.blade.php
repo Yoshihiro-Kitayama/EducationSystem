@@ -30,8 +30,9 @@
                     </ul>
                 </div>
             @endif
+            <img src="{{ asset('storage/' . $curriculum->thumbnail) }}" alt="サムネイル画像" width="100">
             <label for="thumbnail">サムネイル</label>
-            <input type="file" name="thumbnail" id="thumbnail">
+            <input type="file" name="thumbnail" id="thumbnail"><br>
 
             <label for="grade_id">学年</label>
             <select name="grade_id" id="grade_id">
@@ -40,19 +41,19 @@
                         {{ $grade->name }}
                     </option>
                 @endforeach
-            </select>
+            </select><br>
 
             <label for="title">授業名</label>
-            <input type="text" name="title" id="title" value="{{ $curriculum->title }}" required>
+            <input type="text" name="title" id="title" value="{{ $curriculum->title }}" required><br>
 
             <label for="video_url">動画URL</label>
-            <input type="text" name="video_url" id="video_url" value="{{ $curriculum->video_url }}">            
+            <input type="text" name="video_url" id="video_url" value="{{ $curriculum->video_url }}"><br>            
         
             <label for="description">授業概要</label>
-            <textarea name="description" id="description">{{ $curriculum->description }}</textarea>
+            <textarea name="description" id="description">{{ $curriculum->description }}</textarea><br>
         
             <label for="alway_delivery_flg">常時公開</label>
-            <input type="checkbox" name="alway_delivery_flg" id="alway_delivery_flg" value="1" {{ old('alway_delivery_flg', 0) ? 'checked' : '' }}>
+            <input type="checkbox" name="alway_delivery_flg" id="alway_delivery_flg" value="1" {{ old('alway_delivery_flg', 0) ? 'checked' : '' }}><br>
         
             <button type="submit">登録</button>
         </form>
