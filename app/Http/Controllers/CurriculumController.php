@@ -10,8 +10,13 @@ use Illuminate\Http\Request;
 class CurriculumController extends Controller
 {
     // カリキュラム一覧を表示
-    public function index($grade_id)
+    public function index($grade_id = null)
     {
+        //$grade_id が指定されていない場合にデフォルト学年を選択
+        if (is_null($grade_id)) {
+            $grade_id = Grade::min('id'); // デフォルト学年を最小IDとする
+        }
+        
         //カリキュラムとその関連する配信期間を取得
         $curriculums = Curriculum::with('deliveryTimes')
                                     ->where('grade_id', $grade_id)
@@ -73,5 +78,57 @@ class CurriculumController extends Controller
         $curriculum->save();
 
         return redirect()->route('show.curriculum.list',['grade_id' => $grade_id])->with('success', 'カリキュラムが更新されました');
+    }
+
+    public function create()
+    {
+        $grades = Grade::all();
+        $curriculum = new Curriculum(); // 空のオブジェクトを作成
+
+    return view('curriculum_create', compact('grades', 'curriculum'));
+    }
+
+    public function store(Request $request)
+    {
+        // バリデーション
+        $validated = $request->validate(
+            [
+                'title' => 'required|string|min:1|max:255',
+                'thumbnail' => 'nullable|image',
+                'description' => 'required|string',
+                'video_url' => 'required|url',
+                'grade_id' => 'required|exists:grades,id',
+            ],
+            [
+                'title.required' => '授業名は必須です。',
+                'title.max' => '255文字以内で入力してください。',
+                'thumbnail.image' => '登録できる画像形式はjpg,png形式です。',
+                'description.required' => '授業概要は入力必須です。',
+                'video_url.required' => '授業URLは入力必須です。',
+                'video_url.url' => 'URL形式で入力してください。',
+                'grade_id.required' => '学年は入力必須です。',
+            ]
+        );
+
+        // チェックボックス値を整数に変換
+        $alwayDeliveryFlg = $request->has('alway_delivery_flg') ? 1 : 0;
+        // サムネイル画像の処理
+        $thumbnailPath = null;
+        if ($request->hasFile('thumbnail')) {
+            $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
+        }
+
+        // カリキュラムをデータベースに保存
+        Curriculum::create([
+            'title' => $validated['title'],
+            'thumbnail' => $thumbnailPath,
+            'description' => $validated['description'],
+            'video_url' => $validated['video_url'],
+            'alway_delivery_flg' => $alwayDeliveryFlg, // デフォルト値またはリクエストの値
+            'grade_id' => $validated['grade_id'],
+        ]);
+
+        // 成功メッセージとリダイレクト
+        return redirect()->route('show.curriculum.list')->with('success', 'カリキュラムが作成されました');
     }
 }

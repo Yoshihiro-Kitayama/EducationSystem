@@ -4,9 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CurriculumEdit</title>
+    <!-- BootstrapのCSS読み込み
+    <link href="css/bootstrap.min.css" rel="stylesheet" /> -->
+
+    <!-- BootstrapのCDNでのCSS読み込み -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
 </head>
 <body>
-    <a href="{{ route('show.curriculum.list', ['grade_id' => $grade_id]) }}" class="btn btn-secondary">戻る</a>
+    <a href="{{ route('show.curriculum.list', ['grade_id' => $grade_id ?? null]) }}" class="btn btn-secondary">← 戻る</a>
     <h1>授業設定</h1>
     <main>
         <form action="{{ route('curriculum.update', ['grade_id' => $grade_id]) }}" method="POST" enctype="multipart/form-data">
@@ -42,7 +52,7 @@
             <textarea name="description" id="description">{{ $curriculum->description }}</textarea>
         
             <label for="alway_delivery_flg">常時公開</label>
-            <input type="checkbox" name="alway_delivery_flg" id="alway_delivery_flg" {{ $curriculum->alway_delivery_flg ? 'checked' : '' }}>
+            <input type="checkbox" name="alway_delivery_flg" id="alway_delivery_flg" value="1" {{ old('alway_delivery_flg', 0) ? 'checked' : '' }}>
         
             <button type="submit">登録</button>
         </form>

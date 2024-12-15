@@ -14,7 +14,7 @@ class Curriculum extends Model
         'thumbnail',
         'description',
         'video_url',
-        'alaways_delivery_flg',
+        'alway_delivery_flg',
         'grade_id',
     ];
     protected $table = 'curriculums';

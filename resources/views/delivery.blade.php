@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delivery</title>
+    <!-- BootstrapのCSS読み込み
+    <link href="css/bootstrap.min.css" rel="stylesheet" /> -->
+
+    <!-- BootstrapのCDNでのCSS読み込み -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
 </head>
 <body>
     <a href="{{ route('show.curriculum.list', ['grade_id' => $selectedCurriculum->grade_id]) }}" class="btn btn-secondary">戻る</a>
