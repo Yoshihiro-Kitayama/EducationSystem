@@ -54,7 +54,7 @@
                         @endforeach
     
                     <!-- 新しい配信時間の入力フィールド -->
-                    <div class="mb-3" id="new-delivery-times">
+                    <div class="mb-3 col-4" id="new-delivery-times">
                         <button type="button" id="add-delivery-time" class="btn btn-success">＋</button>
                     </div>
                     <div class="text-center">
@@ -66,22 +66,26 @@
                document.getElementById('add-delivery-time').addEventListener('click', function() {
                     // 新しい入力フィールドを表示
                     const newFields = document.createElement('div');
-                    arrayNum = document.querySelectorAll(".delivery-time-row").length;
+                    const arrayNum = document.querySelectorAll(".delivery-time-row").length;
                     newFields.classList.add('mb-3');
                     newFields.innerHTML = `
-                       <div class="delivery-time-row">
-                            <div class="mb-3">
+                       <div class="delivery-time-row d-flex align-items-center mb-3">
+                            <div class="mb-3 col-4">
                                 <label for="new_delivery_from" class="form-label">配信開始日時</label>
                                 <input type="datetime-local" name="delivery_times[`+arrayNum+`][delivery_from]" class="form-control" required>
                             </div>
-                            <p>～</p>
-                            <div class="mb-3">
+                            <p class="mx-3 my-0">～</p>
+                            <div class="mb-3 col-4">
                                 <label for="new_delivery_to" class="form-label">配信終了日時</label>
                                 <input type="datetime-local" name="delivery_times[`+arrayNum+`][delivery_to]" class="form-control" required>
                             </div>
+                            <!-- 削除ボタン -->
+                                <button type="button" class="btn btn-danger remove-delivery-time ms-3">－</button> 
                         </div>
                     `;
-                    document.getElementById('new-delivery-times').appendChild(newFields);
+                    // フィールドの直前に挿入
+                    const newDeliveryTimes = document.getElementById('new-delivery-times');
+                    newDeliveryTimes.parentNode.insertBefore(newFields, newDeliveryTimes);
                     // 新しく追加された削除ボタンにイベントリスナーを追加
                         addRemoveEvent(newFields.querySelector('.remove-delivery-time'));
                     });

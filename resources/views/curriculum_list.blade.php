@@ -26,8 +26,16 @@
         <div class="row">
             <aside class="col-2">
                 @foreach ($grades as $grade)
-                    <a href="{{ url('/curriculum_list/' . $grade->id) }}" class="btn btn-primary btn-sm">
-                        {{ $grade->name }} <!-- 学年名を表示 -->
+                    @php
+                    // 学年名に応じて色を決める
+                        $btnClass = match($grade->name) {
+                            '小学校１年生', '小学校２年生', '小学校３年生', '小学校４年生', '小学校５年生', '小学校６年生', => 'btn-primary', 
+                            '中学校１年生', '中学校２年生', '中学校３年生' => 'btn-info', 
+                            '高校１年生', '高校２年生', '高校３年生' => 'btn-secondary', 
+                        };
+                    @endphp
+                    <a href="{{ url('/curriculum_list/' . $grade->id) }}" class="btn {{ $btnClass }} btn-sm my-2">
+                        {{ $grade->name }}
                     </a>
                 @endforeach
             </aside>
