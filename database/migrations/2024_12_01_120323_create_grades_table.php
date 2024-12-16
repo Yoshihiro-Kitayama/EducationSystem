@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('grades_clear_checks', function (Blueprint $table) {
-            $table->integer('id',10);
-            $table->unsignedBigInteger('users_id');
-            $table->unsignedBigInteger('grade_id');
-            $table->boolean('clear_flg')->default(0);
+        Schema::create('grades', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('grades_clear_checks');
+        Schema::dropIfExists('grades');
     }
 };

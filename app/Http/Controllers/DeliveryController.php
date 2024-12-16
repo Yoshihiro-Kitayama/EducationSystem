@@ -45,14 +45,10 @@ class DeliveryController extends Controller
         // 2. 新しい配信時間を保存する
         // フォームから送信された新しいデータを保存
         $deliveryTimes = $validated['delivery_times'];
-        // 現在の最大IDを取得
-        $maxId = DeliveryTime::max('id') ?? 0; // nullの場合は0を設定
         // 一括挿入用データを作成
         $insertData = [];
         foreach ($deliveryTimes as $data) {
-            $maxId++; // IDを1つ増加
             $insertData[] = [
-                'id' => $maxId,
                 'delivery_from' => $data['delivery_from'],
                 'delivery_to' => $data['delivery_to'],
                 'curriculums_id' => $curriculums_id,

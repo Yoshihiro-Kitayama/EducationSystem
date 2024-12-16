@@ -14,7 +14,6 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="{{ asset('css/edit.css') }}">
 </head>
 <body>
     <div class="container">
@@ -38,7 +37,7 @@
                     <label for="thumbnail">サムネイル</label>
                     <input type="file" name="thumbnail" id="thumbnail">
                 </div>
-                <div class="grade-id row align-items-center justify-content-center">
+                <div class="grade-id row align-items-center justify-content-center mb-3">
                     <label for="grade_id" class="col-2">学年</label>
                     <select name="grade_id" id="grade_id" class="col-4">
                         @foreach ($grades as $grade)
@@ -49,19 +48,19 @@
                     </select>
                 </div>
 
-                <div class="title row align-items-center justify-content-center">
+                <div class="title row align-items-center justify-content-center mb-3">
                     <label for="title" class="col-2">授業名</label>
                     <input type="text" name="title" id="title" value="{{ $curriculum->title }}" required class="col-4">
                 </div>
-                <div class="video-url row align-items-center justify-content-center">
+                <div class="video-url row align-items-center justify-content-center mb-3">
                     <label for="video_url" class="col-2">動画URL</label>
                     <input type="text" name="video_url" id="video_url" value="{{ $curriculum->video_url }}" class="col-4">            
                 </div>
-                <div class="description row align-items-center justify-content-center">        
+                <div class="description row align-items-center justify-content-center mb-3">        
                     <label for="description" class="col-2">授業概要</label>
                     <textarea name="description" id="description" class="col-4">{{ $curriculum->description }}</textarea>
                 </div>
-                <div class="alway-delivery-flg row align-items-center justify-content-center">
+                <div class="alway-delivery-flg row align-items-center justify-content-center mb-3">
                     <input type="checkbox" class="col-2" name="alway_delivery_flg" id="alway_delivery_flg" {{ $curriculum->alway_delivery_flg ? 'checked' : '' }}>
                     <label for="alway_delivery_flg" class="col-4">常時公開</label>
                 </div>
