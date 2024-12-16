@@ -28,19 +28,19 @@ class CurriculumController extends Controller
         return view('curriculum_list', compact('curriculums', 'selectedGrade', 'grades', 'grade_id'));
     }
 
-    public function edit($grade_id)
+    public function edit($curriculums_id)
     {
-        $curriculum = Curriculum::findOrFail($grade_id); // IDでカリキュラムを検索
+        $curriculum = Curriculum::findOrFail($curriculums_id); // IDでカリキュラムを検索
         $grades = Grade::all(); // grades テーブルから全ての学年を取得
 
-        return view('curriculum_edit', compact('curriculum', 'grades', 'grade_id'));
+        return view('curriculum_edit', compact('curriculum', 'grades', 'curriculums_id'));
     }
 
-    public function update(Request $request, $grade_id)
+    public function update(Request $request, $curriculums_id)
     {
         
         // カリキュラムの取得
-        $curriculum = Curriculum::findOrFail($grade_id);
+        $curriculum = Curriculum::findOrFail($curriculums_id);
         // バリデーション
             $request->validate([
             'title' => 'required|string|min:1|max:255',

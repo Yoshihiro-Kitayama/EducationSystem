@@ -18,11 +18,11 @@
 <body>
     <div class="container">
         <div class="row">
-            <a href="{{ route('show.curriculum.list', ['grade_id' => $grade_id ?? null]) }}" class="col-1 btn btn-secondary btn-sm">← 戻る</a>
+            <a href="{{ route('show.curriculum.list') }}" class="col-1 btn btn-secondary btn-sm">← 戻る</a>
             <h2 class="my-3">授業設定</h2>
         </div>
         <main class="row">
-            <form action="{{ route('curriculum.update', ['grade_id' => $grade_id]) }}" method="POST" enctype="multipart/form-data" >
+            <form action="{{ route('curriculum.update', ['curriculums_id' => $curriculums_id]) }}" method="POST" enctype="multipart/form-data" >
                 @csrf
                 @if ($errors->any())
                     <div class="alert alert-danger row">
