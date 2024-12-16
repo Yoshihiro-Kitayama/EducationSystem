@@ -1,0 +1,8 @@
+/* すべてのボタンに共通の間隔を設定 */
+button, a.btn {
+    margin: 5px; /* ボタン間の全方向に余白を設定 */
+}
+.btn-default {
+    width: 100px;
+    height: 50px;
+}
