@@ -14,49 +14,63 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="{{ asset('css/edit.css') }}">
 </head>
 <body>
-    <a href="{{ route('show.curriculum.list', ['grade_id' => $grade_id ?? null]) }}" class="btn btn-secondary">← 戻る</a>
-    <h1>授業設定</h1>
-    <main>
-        <form action="{{ route('curriculum.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+    <div class="container">
+        <div class="row">
+            <a href="{{ route('show.curriculum.list', ['grade_id' => $grade_id ?? null]) }}" class="col-1 btn btn-secondary">← 戻る</a>
+            <h1>授業設定</h1>
+        </div>
+        <main class="row">
+            <form action="{{ route('curriculum.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @if ($errors->any())
+                    <div class="alert alert-danger row">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <div class="row">
+                    <label for="thumbnail">サムネイル</label>
+                    <input type="file" name="thumbnail" id="thumbnail">
                 </div>
-            @endif
-            <label for="thumbnail">サムネイル</label>
-            <input type="file" name="thumbnail" id="thumbnail">
+                <div class="grade-id row align-items-center justify-content-center">
+                    <label for="grade_id" class="col-2">学年</label>
+                    <select name="grade_id" id="grade_id" class="col-4">
+                        @foreach ($grades as $grade)
+                            <option value="{{ $grade->id }}" {{ $curriculum->grade_id == $grade->id ? 'selected' : '' }}>
+                                {{ $grade->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
 
-            <label for="grade_id">学年</label>
-            <select name="grade_id" id="grade_id">
-                @foreach ($grades as $grade)
-                    <option value="{{ $grade->id }}" {{ $curriculum->grade_id == $grade->id ? 'selected' : '' }}>
-                        {{ $grade->name }}
-                    </option>
-                @endforeach
-            </select>
-
-            <label for="title">授業名</label>
-            <input type="text" name="title" id="title" value="{{ $curriculum->title }}" required>
-
-            <label for="video_url">動画URL</label>
-            <input type="text" name="video_url" id="video_url" value="{{ $curriculum->video_url }}">            
-        
-            <label for="description">授業概要</label>
-            <textarea name="description" id="description">{{ $curriculum->description }}</textarea>
-        
-            <label for="alway_delivery_flg">常時公開</label>
-            <input type="checkbox" name="alway_delivery_flg" id="alway_delivery_flg" {{ $curriculum->alway_delivery_flg ? 'checked' : '' }}>
-        
-            <button type="submit">登録</button>
-        </form>
-    </main>
+                <div class="title row align-items-center justify-content-center">
+                    <label for="title" class="col-2">授業名</label>
+                    <input type="text" name="title" id="title" value="{{ $curriculum->title }}" required class="col-4">
+                </div>
+                <div class="video-url row align-items-center justify-content-center">
+                    <label for="video_url" class="col-2">動画URL</label>
+                    <input type="text" name="video_url" id="video_url" value="{{ $curriculum->video_url }}" class="col-4">            
+                </div>
+                <div class="description row align-items-center justify-content-center">        
+                    <label for="description" class="col-2">授業概要</label>
+                    <textarea name="description" id="description" class="col-4">{{ $curriculum->description }}</textarea>
+                </div>
+                <div class="alway-delivery-flg row align-items-center justify-content-center">
+                    <input type="checkbox" class="col-2" name="alway_delivery_flg" id="alway_delivery_flg" {{ $curriculum->alway_delivery_flg ? 'checked' : '' }}>
+                    <label for="alway_delivery_flg" class="col-4">常時公開</label>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">登録</button>
+                </div>
+            </form>
+        </main>
+    </div>
 </body>
 <footer>
 </footer>

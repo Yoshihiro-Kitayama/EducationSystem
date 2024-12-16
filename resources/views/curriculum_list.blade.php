@@ -17,36 +17,43 @@
     <link rel="stylesheet" href="{{ asset('css/list.css') }}">
 </head>
 <body>
-    <header>
-        <button onclick="history.back()" class="btn btn-secondary">← 戻る</button>
+    <div class="container">
+        <div class="row">
+            <button onclick="history.back()" class="col-1 btn btn-secondary">← 戻る</button>
             <h1>授業一覧</h1>
-            <a href="{{ route('show.curriculum.create')}}" class="btn btn-primary">新規登録</a>
-            <h2>{{ $selectedGrade->name }}</h2>
-    </header>
-    <aside>
-        @foreach ($grades as $grade)
-            <a href="{{ url('/curriculum_list/' . $grade->id) }}" class="btn btn-primary">
-                {{ $grade->name }} <!-- 学年名を表示 -->
-            </a>
-        @endforeach
-    </aside>
-    <main>
-        <h1>{{ $selectedGrade->name }}のカリキュラム一覧</h1>
-            @foreach ($curriculums as $curriculum) 
-                <div class="card" style="width: 18rem;">
-                    <img src="{{ asset('storage/' . $curriculum->thumbnail) }}" class="card-img-top" alt="サムネイル">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $curriculum->title }}</h5>
-                        <p class="card-text">
-                        @foreach($curriculum->deliveryTimes as $deliveryTime)
-                            <p>{{ date('m-d H:i', strtotime($deliveryTime->delivery_from)) }} 〜 {{ date('m-d H:i', strtotime($deliveryTime->delivery_to)) }}</p>
-                        @endforeach</p>
-                        <a href="{{ route('show.curriculum.edit', $curriculum->id) }}" class="btn btn-primary">授業内容編集</a>
-                        <a href="{{ route('delivery.edit', $curriculum->id) }}" class="btn btn-primary">配信日時編集</a>
-                    </div>
+            <a href="{{ route('show.curriculum.create')}}" class="col-1 btn btn-primary">新規登録</a>
+        </div>
+        <div class="row">
+            <aside class="col-2">
+                @foreach ($grades as $grade)
+                    <a href="{{ url('/curriculum_list/' . $grade->id) }}" class="btn btn-primary">
+                        {{ $grade->name }} <!-- 学年名を表示 -->
+                    </a>
+                @endforeach
+            </aside>
+            <main class="col-10">
+                <h2>{{ $selectedGrade->name }}</h2>
+                <div class="card-container row">
+                    @foreach ($curriculums as $curriculum) 
+                        <div class="card" style="width: 18rem;">
+                            <img src="{{ asset('storage/' . $curriculum->thumbnail) }}" class="card-img-top" alt="サムネイル">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $curriculum->title }}</h5>
+                                <p class="card-text">
+                                @foreach($curriculum->deliveryTimes as $deliveryTime)
+                                    <p>{{ date('m-d H:i', strtotime($deliveryTime->delivery_from)) }} 〜 {{ date('m-d H:i', strtotime($deliveryTime->delivery_to)) }}</p>
+                                @endforeach</p>
+                                <div class="row">
+                                    <a href="{{ route('show.curriculum.edit', $curriculum->id) }}" class="col-6 btn btn-primary">授業内容編集</a>
+                                    <a href="{{ route('delivery.edit', $curriculum->id) }}" class="col-6 btn btn-primary">配信日時編集</a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
-            @endforeach
-    </main>
+            </main>
+        </div>
+    </div>
 </body>
 <footer>
 </footer>
