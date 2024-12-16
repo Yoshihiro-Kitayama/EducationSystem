@@ -19,8 +19,8 @@
 <body>
     <div class="container">
         <div class="row">
-            <a href="{{ route('show.curriculum.list', ['grade_id' => $grade_id ?? null]) }}" class="col-1 btn btn-secondary">← 戻る</a>
-            <h1>授業設定</h1>
+            <a href="{{ route('show.curriculum.list', ['grade_id' => $grade_id ?? null]) }}" class="col-1 btn btn-secondary btn-sm">← 戻る</a>
+            <h2 class="my-3">授業設定</h2>
         </div>
         <main class="row">
             <form action="{{ route('curriculum.store') }}" method="POST" enctype="multipart/form-data">
@@ -66,7 +66,7 @@
                     <label for="alway_delivery_flg" class="col-4">常時公開</label>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary">登録</button>
+                    <button type="submit" class="btn btn-success">登録</button>
                 </div>
             </form>
         </main>

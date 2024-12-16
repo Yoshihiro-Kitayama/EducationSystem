@@ -19,14 +19,14 @@
 <body>
     <div class="container">
         <div class="row">
-            <button onclick="history.back()" class="col-1 btn btn-secondary">← 戻る</button>
-            <h1>授業一覧</h1>
-            <a href="{{ route('show.curriculum.create')}}" class="col-1 btn btn-primary">新規登録</a>
+            <button onclick="history.back()" class="col-1 btn btn-secondary btn-sm">← 戻る</button>
+            <h1 class="my-4">授業一覧</h1>
+            <a href="{{ route('show.curriculum.create')}}" class="col-1 btn btn-success btn-sm my-3">新規登録</a>
         </div>
         <div class="row">
             <aside class="col-2">
                 @foreach ($grades as $grade)
-                    <a href="{{ url('/curriculum_list/' . $grade->id) }}" class="btn btn-primary">
+                    <a href="{{ url('/curriculum_list/' . $grade->id) }}" class="btn btn-primary btn-sm">
                         {{ $grade->name }} <!-- 学年名を表示 -->
                     </a>
                 @endforeach
@@ -44,8 +44,8 @@
                                     <p>{{ date('m-d H:i', strtotime($deliveryTime->delivery_from)) }} 〜 {{ date('m-d H:i', strtotime($deliveryTime->delivery_to)) }}</p>
                                 @endforeach</p>
                                 <div class="row">
-                                    <a href="{{ route('show.curriculum.edit', $curriculum->id) }}" class="col-6 btn btn-primary">授業内容編集</a>
-                                    <a href="{{ route('delivery.edit', $curriculum->id) }}" class="col-6 btn btn-primary">配信日時編集</a>
+                                    <a href="{{ route('show.curriculum.edit', $curriculum->id) }}" class="col-5 btn btn-success btn-sm">授業内容編集</a>
+                                    <a href="{{ route('delivery.edit', $curriculum->id) }}" class="col-5 btn btn-success btn-sm">配信日時編集</a>
                                 </div>
                             </div>
                         </div>

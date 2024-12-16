@@ -18,12 +18,12 @@
 <body>
     <div class="container">
         <div class="row">
-            <a href="{{ route('show.curriculum.list', ['grade_id' => $selectedCurriculum->grade_id]) }}" class="btn btn-secondary col-1">← 戻る</a>
-            <h2>配信日時設定</h2>
+            <a href="{{ route('show.curriculum.list', ['grade_id' => $selectedCurriculum->grade_id]) }}" class="btn btn-secondary col-1 btn-sm">← 戻る</a>
+            <h2 class="my-3">配信日時設定</h2>
         </div>
         <main>
             <div class="row">
-                <h2>{{ $selectedCurriculum->title }}</h2>
+                <h3>{{ $selectedCurriculum->title }}</h3>
                 <form action="{{ route('delivery.update', ['curriculums_id' => $curriculums_id]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                     
@@ -38,12 +38,12 @@
                         @endif
                     
                         @foreach($deliveryTimes as $index => $deliveryTime)
-                            <div class = "delivery-time-row d-flex align-items-center">
+                            <div class = "delivery-time-row d-flex align-items-center mb-3">
                                 <div class="mb-3 col-4">
                                     <label class="form-label">配信開始日時</label>
                                     <input type="datetime-local" name="delivery_times[{{ $index }}][delivery_from]" class="form-control" value="{{ $deliveryTime->delivery_from->format('Y-m-d\TH:i') }}" required>
                                 </div>
-                                <p class="mx-3">～</p>
+                                <p class="mx-3 my-0">～</p>
                                 <div class="mb-3 col-4">
                                     <label class="form-label">配信終了日時</label>
                                     <input type="datetime-local" name="delivery_times[{{ $index }}][delivery_to]" class="form-control" value="{{ $deliveryTime->delivery_to->format('Y-m-d\TH:i') }}" required>
@@ -57,8 +57,9 @@
                     <div class="mb-3" id="new-delivery-times">
                         <button type="button" id="add-delivery-time" class="btn btn-success">＋</button>
                     </div>
-    
-                    <button type="submit" class="btn btn-primary">登録</button>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success">登録</button>
+                    </div>
                 </form>
             </div>
             <script>
