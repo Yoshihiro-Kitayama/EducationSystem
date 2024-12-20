@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('grades_clear_checks', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->dateTime('posted_date')->nullable();
-            $table->text('article_contents');
+            $table->unsignedBigInteger('users_id');
+            $table->unsignedBigInteger('grade_id');
+            $table->boolean('clear_flg')->default(0);
             $table->timestamps();
+            $table->foreign('users_id')->references('id')->on('users');
+            $table->foreign('grade_id')->references('id')->on('grades');
         });
     }
 
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('grades_clear_checks');
     }
 };
