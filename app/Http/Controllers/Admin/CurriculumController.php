@@ -82,23 +82,40 @@ class CurriculumController extends Controller
 
     public function store(StoreCurriculumRequest $request)
     {
+        // チェックボックスの値を整数に変換
         $alwayDeliveryFlg = $request->has('alway_delivery_flg') ? 1 : 0;
         $thumbnailPath = null;
 
-        if ($request->hasFile('thumbnail')) {
-            $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
+        try {
+            // トランザクション開始
+            DB::beginTransaction();
+
+            // サムネイル画像の処理
+            if ($request->hasFile('thumbnail')) {
+                $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
+            }
+
+            // カリキュラムの作成
+            Curriculum::create([
+                'title' => $request->input('title'),
+                'thumbnail' => $thumbnailPath,
+                'description' => $request->input('description'),
+                'video_url' => $request->input('video_url'),
+                'alway_delivery_flg' => $alwayDeliveryFlg,
+                'grade_id' => $request->input('grade_id'),
+            ]);
+
+            // トランザクションをコミット
+            DB::commit();
+
+            return redirect()->route('admin.curriculum.list')
+                            ->with('success', 'カリキュラムが作成されました');
+        } catch (\Exception $e) {
+            // エラーが発生した場合はロールバック
+            DB::rollBack();
+
+            // エラーメッセージを返す
+            return back()->with('error', 'カリキュラムの作成中にエラーが発生しました: ' . $e->getMessage());
         }
-
-        Curriculum::create([
-            'title' => $request->input('title'),
-            'thumbnail' => $thumbnailPath,
-            'description' => $request->input('description'),
-            'video_url' => $request->input('video_url'),
-            'alway_delivery_flg' => $alwayDeliveryFlg,
-            'grade_id' => $request->input('grade_id'),
-        ]);
-
-        return redirect()->route('show.curriculum.list')
-                         ->with('success', 'カリキュラムが作成されました');
     }
 }
