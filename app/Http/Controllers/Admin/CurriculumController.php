@@ -7,6 +7,7 @@ use App\Models\Curriculum;
 use App\Models\Grade;
 use App\Http\Requests\StoreCurriculumRequest;
 use App\Http\Requests\UpdateCurriculumRequest;
+use Illuminate\Support\Facades\DB; // DBファサードを追加
 
 class CurriculumController extends Controller
 {
@@ -39,22 +40,35 @@ class CurriculumController extends Controller
     public function update(UpdateCurriculumRequest $request, $curriculums_id)
     {
         $curriculum = Curriculum::findOrFail($curriculums_id);
+        try {
+            // トランザクション開始（以降のDB操作はすべて一連の処理として扱われる）
+            DB::beginTransaction();
 
-        if ($request->hasFile('thumbnail')) {
-            $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
-            $curriculum->thumbnail = $thumbnailPath;
-        }
-
-        $curriculum->update([
-            'title' => $request->input('title'),
-            'description' => $request->input('description'),
-            'video_url' => $request->input('video_url'),
-            'alway_delivery_flg' => $request->has('alway_delivery_flg') ? 1 : 0,
-            'grade_id' => $request->input('grade_id'),
-        ]);
-
-        return redirect()->route('curriculum.list', ['grade_id' => $curriculum->grade_id])
+            if ($request->hasFile('thumbnail')) {
+                $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
+                $curriculum->thumbnail = $thumbnailPath;
+            }
+            //データ更新
+            $curriculum->update([
+                'title' => $request->input('title'),
+                'description' => $request->input('description'),
+                'video_url' => $request->input('video_url'),
+                'alway_delivery_flg' => $request->has('alway_delivery_flg') ? 1 : 0,
+                'grade_id' => $request->input('grade_id'),
+            ]);
+            // 更新を保存
+            $curriculum->save();
+            // トランザクションをコミット　すべてのDB操作が成功したらコミットして確定
+            DB::commit();
+            return redirect()->route('curriculum.list', ['grade_id' => $curriculum->grade_id])
                          ->with('success', 'カリキュラムが更新されました');
+        } catch (\Exception $e) {
+            // エラー発生時にロールバック（変更取り消し）
+            DB::rollBack();
+    
+            // エラーメッセージを表示
+            return back()->with('error', 'カリキュラムの更新中にエラーが発生しました: ' . $e->getMessage());
+        }
     }
 
 
