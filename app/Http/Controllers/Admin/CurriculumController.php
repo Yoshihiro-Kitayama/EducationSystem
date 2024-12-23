@@ -60,7 +60,7 @@ class CurriculumController extends Controller
             $curriculum->save();
             // トランザクションをコミット　すべてのDB操作が成功したらコミットして確定
             DB::commit();
-            return redirect()->route('curriculum.list', ['grade_id' => $curriculum->grade_id])
+            return redirect()->route('admin.curriculum.list', ['grade_id' => $curriculum->grade_id])
                          ->with('success', 'カリキュラムが更新されました');
         } catch (\Exception $e) {
             // エラー発生時にロールバック（変更取り消し）
