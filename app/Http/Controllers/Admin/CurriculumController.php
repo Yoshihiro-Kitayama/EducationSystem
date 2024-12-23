@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Curriculum;
@@ -25,7 +25,7 @@ class CurriculumController extends Controller
         $selectedGrade = Grade::find($grade_id);
         // gradesテーブルのデータを取得（学年のリンク用）
         $grades = Grade::all();
-        return view('curriculum_list', compact('curriculums', 'selectedGrade', 'grades', 'grade_id'));
+        return view('admin.curriculum_list', compact('curriculums', 'selectedGrade', 'grades', 'grade_id'));
     }
 
     public function edit($curriculums_id)
@@ -33,7 +33,7 @@ class CurriculumController extends Controller
         $curriculum = Curriculum::findOrFail($curriculums_id); // IDでカリキュラムを検索
         $grades = Grade::all(); // grades テーブルから全ての学年を取得
 
-        return view('curriculum_edit', compact('curriculum', 'grades', 'curriculums_id'));
+        return view('admin.curriculum_edit', compact('curriculum', 'grades', 'curriculums_id'));
     }
 
     public function update(UpdateCurriculumRequest $request, $curriculums_id)
@@ -53,7 +53,7 @@ class CurriculumController extends Controller
             'grade_id' => $request->input('grade_id'),
         ]);
 
-        return redirect()->route('show.curriculum.list', ['grade_id' => $curriculum->grade_id])
+        return redirect()->route('curriculum.list', ['grade_id' => $curriculum->grade_id])
                          ->with('success', 'カリキュラムが更新されました');
     }
 
@@ -63,7 +63,7 @@ class CurriculumController extends Controller
         $grades = Grade::all();
         $curriculum = new Curriculum(); // 空のオブジェクトを作成
 
-    return view('curriculum_create', compact('grades', 'curriculum'));
+    return view('admin.curriculum_create', compact('grades', 'curriculum'));
     }
 
     public function store(StoreCurriculumRequest $request)

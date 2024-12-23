@@ -20,7 +20,7 @@
         <div class="row">
             <button onclick="history.back()" class="col-1 btn btn-secondary btn-sm">← 戻る</button>
             <h1 class="my-4">授業一覧</h1>
-            <a href="{{ route('show.curriculum.create')}}" class="col-1 btn btn-success btn-sm my-3">新規登録</a>
+            <a href="{{ route('admin.curriculum.create')}}" class="col-1 btn btn-success btn-sm my-3">新規登録</a>
         </div>
         <div class="row d-flex">
             <aside class="col-2">
@@ -34,7 +34,7 @@
                         default => 'btn-light', // それ以外
                     };
                     @endphp
-                    <a href="{{ url('/curriculum_list/' . $grade->id) }}" class="btn {{ $btnClass }} btn-sm my-2 w-100">
+                    <a href="{{ route('admin.curriculum.list', ['grade_id' => $grade->id]) }}" class="btn {{ $btnClass }} btn-sm my-2 w-100">
                         {{ $grade->name }}
                     </a>
                 @endforeach
@@ -60,8 +60,8 @@
                                     </div>
                                     <div class="card-footer">
                                         <div class="row g-2">
-                                            <a href="{{ route('show.curriculum.edit', $curriculum->id) }}" class="col-5 btn btn-success btn-sm">授業内容編集</a>
-                                            <a href="{{ route('delivery.edit', $curriculum->id) }}" class="col-5 btn btn-success btn-sm mx-2">配信日時編集</a>
+                                            <a href="{{ route('admin.curriculum.edit', $curriculum->id) }}" class="col-5 btn btn-success btn-sm">授業内容編集</a>
+                                            <a href="{{ route('admin.delivery.edit', $curriculum->id) }}" class="col-5 btn btn-success btn-sm mx-2">配信日時編集</a>
                                         </div>
                                     </div>
                                 </div>

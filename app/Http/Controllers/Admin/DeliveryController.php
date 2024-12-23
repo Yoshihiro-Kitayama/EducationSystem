@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\DeliveryTime;
 use App\Models\Curriculum;
 use App\Http\Requests\UpdateDeliveryRequest;
@@ -16,7 +15,7 @@ class DeliveryController extends Controller
         $selectedCurriculum = Curriculum::find($curriculums_id);
         $deliveryTimes = DeliveryTime::where('curriculums_id', $curriculums_id)->get(); // 配信日時データを取得
         
-        return view('delivery', compact('deliveryTimes', 'curriculums_id', 'selectedCurriculum'));
+        return view('admin.delivery', compact('deliveryTimes', 'curriculums_id', 'selectedCurriculum'));
     }
 
     // 編集内容を更新
