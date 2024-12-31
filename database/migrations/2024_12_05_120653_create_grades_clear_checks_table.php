@@ -19,6 +19,8 @@ return new class extends Migration
             $table->unsignedBigInteger('grade_id');
             $table->boolean('clear_flg')->default(0);
             $table->timestamps();
+            $table->foreign('users_id')->references('id')->on('users');
+            $table->foreign('grade_id')->references('id')->on('grades');
         });
     }
 
