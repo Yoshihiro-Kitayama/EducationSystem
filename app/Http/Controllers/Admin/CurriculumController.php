@@ -28,6 +28,19 @@ class CurriculumController extends Controller
         $grades = Grade::all();
         return view('admin.curriculum_list', compact('curriculums', 'selectedGrade', 'grades', 'grade_id'));
     }
+    public function ajaxList($grade_id)
+    {
+        $curriculums = Curriculum::with('deliveryTimes')
+                                ->where('grade_id', $grade_id)
+                                ->get();
+
+        $selectedGrade = Grade::find($grade_id);
+
+        return response()->json([
+            'curriculums' => $curriculums,
+            'selectedGrade' => $selectedGrade
+        ]);
+    }
 
     public function edit($curriculums_id)
     {
