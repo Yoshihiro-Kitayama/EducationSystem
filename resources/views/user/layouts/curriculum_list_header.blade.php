@@ -1,7 +1,7 @@
 <div class="curriculum_header">
 
   <div class="curriculum_header_back">
-    <a href="{{ route('show.top') }}">←戻る</a>
+    <a href="{{ route('user.show.top') }}">←戻る</a>
   </div>
 
   <div class="curriculum_header_contents">

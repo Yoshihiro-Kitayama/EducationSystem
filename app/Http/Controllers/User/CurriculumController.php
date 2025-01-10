@@ -17,9 +17,7 @@ class CurriculumController extends Controller
 {
         public function showCurriculumList(Request $request){
         //現在のユーザーの情報を取得
-        //現在はログインしていないため、一時的にコメントアウト $user = Auth::user();
-        //仮のユーザー情報を入力
-        $user = User::find(1);
+        $user = Auth::user();
         // 学年を取得、初期値は1
         $grade_id = $request->input('grade_id', 1);
         $grade = Grade::find($grade_id);
@@ -55,13 +53,19 @@ class CurriculumController extends Controller
 
         //ajaxでの非同期の場合、jsonでreturn
         if ($request->ajax()) {
-            return response()->json(['grade_name' => $grade_name, 'current_month' => $current_month, 'prev_month_route' => $prev_month_route, 'next_month_route' => $next_month_route, 'curriculums' => $curriculums,
-                                     'getAdjustedDeliveryTimes' => $getAdjustedDeliveryTimes, 'grade_color' => $grade_color, 'curriculum_clear_data' => $curriculum_clear_data ]
+            return response()->json(['grade_name' => $grade_name, 
+                                     'current_month' => $current_month, 
+                                     'prev_month_route' => $prev_month_route, 
+                                     'next_month_route' => $next_month_route, 
+                                     'curriculums' => $curriculums,
+                                     'getAdjustedDeliveryTimes' => $getAdjustedDeliveryTimes, 
+                                     'grade_color' => $grade_color, 
+                                     'curriculum_clear_data' => $curriculum_clear_data ]
              );
         }
 
         //それ以外のビューのreturn
-        return view('user.curriculum_list', compact('user','grade_id', 'grades', 'grade', 'grade_color','grade_name', 'month_start','month_end','current_month',
+        return view('user.layouts.curriculum_list', compact('user','grade_id', 'grades', 'grade', 'grade_color','grade_name', 'month_start','month_end','current_month',
                                                     'curriculum_clear_data','curriculums','getAdjustedDeliveryTimes',
                                                     'prev_month_route','next_month_route', 'gradedColors'));
         
@@ -80,8 +84,8 @@ class CurriculumController extends Controller
         $next_month = \Carbon\Carbon::parse($current_month)->addMonth()->format('Y-m');
         // ルーティングをしてリターン
         return [
-            'prev_month_route' => route('show.curriculum', ['month' => $prev_month, 'grade_id' => $grade_id]),
-            'next_month_route' => route('show.curriculum', ['month' => $next_month, 'grade_id' => $grade_id]),
+            'prev_month_route' => route('user.show.curriculum', ['month' => $prev_month, 'grade_id' => $grade_id]),
+            'next_month_route' => route('user.show.curriculum', ['month' => $next_month, 'grade_id' => $grade_id]),
         ];
     }
 
@@ -93,11 +97,6 @@ class CurriculumController extends Controller
             'month_start' => $current_month->copy()->startOfMonth(),
             'month_end' => $current_month->copy()->endOfMonth(),
         ];
-    }
-
-    public function getCurriculumNavigation(Request $request){
-
-        
     }
 
 }
