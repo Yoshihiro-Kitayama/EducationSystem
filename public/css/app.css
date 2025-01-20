@@ -340,3 +340,125 @@
 .admin_top_email{
   margin: 0 10px auto 30px;
 }
+
+
+/* 管理者用バナー管理画面 */
+.admin_banner_back{
+  text-decoration: none;
+}
+
+.admin_banner_edit_title{
+  font-size: 30px;
+  margin-top: 10px;
+}
+
+.admin_banner_images img{
+  width: 150px;
+  height: 100px;
+  margin-top: 15px;
+  object-fit: contain;
+}
+
+.admin_banner_images{
+  margin: 5px auto 0 8%;
+  display: flex;
+  align-items: center;
+}
+
+.admin_banner_form{
+  display: none;
+}
+
+.admin_banner_update_form_label{
+  display: inline-block;
+  margin-left: 30px;
+  padding: 10px 10px;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border-radius: 2px;
+  cursor: pointer;
+  text-align: center;
+  border: solid 1px black;
+  width:  100px;
+  height: 5px;
+  line-height: 5px;
+  font-size: 13px;
+}
+
+.admin_banner_destroy{
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 30px;
+}
+
+.admin_destroy_btn_bar{
+  width: 70%;
+  height: 20%;
+  background-color: white;
+}
+
+.admin_banner_edit_form-group_add_btn{
+  width:  30px;
+  height:  30px;
+  background-color: #07bc69;
+  border: none;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5%;
+  cursor: pointer;
+}
+
+.admin_banner_edit_form-group_add_btn_bar, 
+.admin_banner_edit_form-group_add_btn_vertical{
+  position: absolute;
+  background-color: white;
+  border-radius: 2px;
+}
+
+.admin_banner_edit_form-group_add_btn_bar{
+  width: 60%;
+  height: 10%;
+}
+
+.admin_banner_edit_form-group_add_btn_vertical{
+  width: 10%;
+  height: 60%;
+}
+
+.admin_banner_submit{
+ display: block;
+ margin: 10px auto;
+ background-color: #646464;
+ border: none;
+ color: white;
+ width: 150px;
+ height: 30px;
+ cursor: pointer;
+}
+
+.banner_edit_form-group_add_form{
+  margin: 5px auto 0 8%;
+  display: flex;
+  align-items: center;
+}
+
+.admin_banner_images_preview {
+    width: 150px; 
+    height: 100px; 
+    object-fit: contain; 
+    background-color: #f0f0f0;
+    position: relative;
+    display: block;
+    background-color: transparent;
+    object-fit: contain;
+}

@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Route::prefix('user')->namespace('User')->name('user.')->group(function(){
     Route::group(['middleware' => 'auth'], function (){
-           Route::get('curriculum_list',[App\Http\Controllers\User\CurriculumController::class,'showCurriculumList'])->name('show.curriculum');
+        Route::get('curriculum_list',[App\Http\Controllers\User\CurriculumController::class,'showCurriculumList'])->name('show.curriculum');
     });
 });
 
@@ -30,8 +30,10 @@ Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function(){
     Route::get('register', [App\Http\Controllers\Admin\Auth\RegisterController::class, 'showRegisterForm'])->name('show.register');
     Route::post('register',[App\Http\Controllers\Admin\Auth\RegisterController::class, 'register'])->name('register.submit');
     Route::get('top', [App\Http\Controllers\Admin\TopController::class, 'showTop'])->name('show.top');
-    Route::group(['middleware' => 'auth'], function (){
-
+    Route::group(['middleware' => 'auth:admin'], function (){
+        Route::get('banner_edit', [App\Http\Controllers\Admin\BannerController::class, 'showBannerEdit'])->name('show.banner.edit');
+        Route::post('banner_edit', [App\Http\Controllers\Admin\BannerController::class, 'showBannerRegist'])->name('show.banner.submit');
+        Route::delete('banner/delete/{id}',[App\Http\Controllers\Admin\BannerController::class, 'showBannerDelete'])->name('show.banner.delete');
     });
 });
 Auth::routes();
