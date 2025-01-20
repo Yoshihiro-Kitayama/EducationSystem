@@ -1,0 +1,464 @@
+/* ユーザー授業一覧ヘッダー画面 */
+.curriculum_header_back{
+  font-size: 30px;
+}
+
+.curriculum_header_back a{
+  text-decoration: none;
+}
+
+.curriculum_header_contents {
+ display: flex;
+ font-size: 40px;
+ padding-left: 5%;
+ margin-top: -30px;
+
+}
+
+.curriculum_header_prev_button, .curriculum_header_next_button {
+  font-size: 40px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  border: none;
+}
+
+.curriculum_header_prev_button{
+  margin-left: 50px;
+}
+
+.curriculum_header_grade_button-1, .curriculum_header_grade_button-2, .curriculum_header_grade_button-3 {
+  width: 200px;
+  margin: auto 30px;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius:15px ;
+  font-size: 25px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(0, 217, 255);
+  color: aliceblue;
+}
+
+.curriculum_header_grade_button-2{
+  background-color: rgb(76, 241, 145);
+}
+
+.curriculum_header_grade_button-3{
+  background-color: rgb(8, 177, 73);
+}
+
+/* ユーザー授業一覧サイドバー画面 */
+.sidebar_main_contents {
+  width: 300px;
+}
+
+.grade-button-1, .grade-button-2, .grade-button-3{
+  width: 150px;
+  margin: 15px 20px;
+  border: 1px solid black;
+  border-radius:15px ;
+  font-size: 20px;
+  background-color: rgb(0, 217, 255);
+  color: aliceblue;
+}
+
+.grade-button-2{
+  background-color: rgb(76, 241, 145);
+}
+
+.grade-button-3{
+  background-color: rgb(8, 177, 73);
+}
+
+.grade-button-1:disabled, .grade-button-2:disabled, .grade-button-3:disabled{
+  background-color: rgb(136, 134, 131);
+}
+/* サイドバーとメイン画面の並び */
+.sidebar_main_container {
+  display: flex;
+  margin-top: 70px;
+}
+
+/* ユーザー授業一覧メインコンテンツ画面 */
+.main-contents {
+  flex:1;
+  padding: 10px;
+}
+.curriculums_list_box{
+  display: flex;
+  width: 80%;
+  height: auto;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-wrap:wrap;
+  gap: 1em;
+}
+
+.curriculum_box {
+  width: calc(90%/3);
+  height: auto;
+  min-height: 350px;
+  flex-direction: column;
+  border: 1px solid;
+  text-align: center;
+}
+
+.curriculum_box img {
+  width: 90%;
+  height: 200px;
+  margin-top: 15px;
+  object-fit: contain;
+  border: 1px solid;
+}
+
+.curriculum_title {
+  text-align: start;
+  font-size: 20px;
+  margin: 10px auto 0 20px;
+}
+
+.curriculum_delivery_from_to {
+    display: flex; 
+    align-items: center; 
+}
+
+.curriculum_delivery_days {
+    width: 100px; 
+    text-align: left; 
+    padding: 5px 0; 
+    margin-left: 50px;
+}
+
+
+.curriculum_delivery_time {
+    flex: 1; 
+    text-align: left; 
+    padding: 5px 0; 
+}
+
+
+.curriculum_delivery_days:empty {
+    visibility: hidden; 
+}
+
+/* 管理者新規ユーザー作成画面 */
+.admin_register_contents{
+  margin: 100px auto;
+  width: 50%;
+  text-align: right;
+  color: rgb(113, 119, 126);
+}
+
+.admin_register_login-navigation{
+  margin: 0 80px 0 0;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.admin_register_box{
+  text-align: center;
+}
+
+.admin_register_title{
+  font-size: 60px;
+  margin: 40px 0 10px 0;
+}
+
+.admin_register_forms{
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.admin_register_form{
+  width: 90%;
+  display: flex;
+  align-items: center;
+  margin: 30px auto;
+  padding-right: 100px;
+}
+
+.admin_register_form_label{
+  width: 300px;
+  text-align: right;
+  font-size: 20px;
+}
+
+.admin_register_form_input{
+  width: 100%;
+  padding-right: 100px;
+}
+.admin_register_form-control{
+  width: 90%;
+  height: 35px;
+}
+
+.admin_register_form_register_btn {
+  cursor: pointer;
+  width: 200px;
+  height: 50px;
+  font-size: 40px;
+  border: none;
+  color: white;
+  background-color: rgb(110, 110, 110);
+  line-height: 40px;
+  margin-top: 20px;
+}
+
+.admin_register_form_feedback{
+  text-align: left;
+}
+/* 管理者新規ログイン画面 */
+.admin_login_contents{
+  margin: 100px auto;
+  width: 50%;
+  text-align: right;
+  color: rgb(113, 119, 126);
+}
+
+.admin_login_register-navigation{
+  margin: 0 80px 0 0;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.admin_login_box{
+  text-align: center;
+}
+
+.admin_login_title{
+  font-size: 60px;
+  margin: 40px 0 10px 0;
+}
+
+.admin_login_forms{
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.admin_login_form{
+  width: 90%;
+  display: flex;
+  align-items: center;
+  margin: 30px auto;
+  padding-right: 100px;
+}
+
+.admin_login_form_label{
+  width: 300px;
+  text-align: right;
+  font-size: 20px;
+}
+
+.admin_login_form_input{
+  width: 100%;
+  padding-right: 100px;
+}
+.admin_login_form-control{
+  width: 90%;
+  height: 35px;
+}
+
+.admin_login_form_register_btn {
+  cursor: pointer;
+  width: 200px;
+  height: 50px;
+  font-size: 40px;
+  border: none;
+  color: white;
+  background-color: rgb(110, 110, 110);
+  line-height: 40px;
+  margin-top: 20px;
+}
+
+.admin_login_form_feedback{
+  text-align: left;
+}
+/* 管理者ヘッダー */
+.admin_header{
+  height: 100px;
+  background-color: rgb(74,236,242);
+  /* overflow: hidden; */
+}
+
+.admin_header_box{
+  display: flex;
+  align-items: center;
+  /* margin: 40px auto; */
+}
+
+.admin_header_left-btn{
+  margin:30px auto auto 20px ;
+  display: flex;
+}
+
+.admin_header_curriculum-management, .admin_header_notice-management, .admin_header_banner-management{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  margin-left: 20px;
+  text-decoration: none;
+  color: white;
+  background-color: rgb(112, 109, 109);
+  border-radius:10px;
+  border: none;
+  cursor: pointer;
+}
+
+.admin_header_notice-management{
+  font-size: 15px;
+}
+
+.admin_header_login-logout-btn{
+  margin: 30px 50px auto auto;
+  font-size: 25px;
+  color: white;
+  background-color:rgb(74,236,242);
+  border: none;
+  cursor: pointer;
+}
+
+/* 管理者用トップ画面 */
+.admin_top_box{
+  border: 1px solid;
+  margin: 10% auto;
+  width: 75%;
+  height: 125px; 
+  padding: 30px;
+}
+
+.admin_top_name{
+  margin: 0 10px 50px 30px;
+}
+
+.admin_top_email{
+  margin: 0 10px auto 30px;
+}
+
+
+/* 管理者用バナー管理画面 */
+.admin_banner_back{
+  text-decoration: none;
+}
+
+.admin_banner_edit_title{
+  font-size: 30px;
+  margin-top: 10px;
+}
+
+.admin_banner_images img{
+  width: 150px;
+  height: 100px;
+  margin-top: 15px;
+  object-fit: contain;
+}
+
+.admin_banner_images{
+  margin: 5px auto 0 8%;
+  display: flex;
+  align-items: center;
+}
+
+.admin_banner_form{
+  display: none;
+}
+
+.admin_banner_update_form_label{
+  display: inline-block;
+  margin-left: 30px;
+  padding: 10px 10px;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border-radius: 2px;
+  cursor: pointer;
+  text-align: center;
+  border: solid 1px black;
+  width:  100px;
+  height: 5px;
+  line-height: 5px;
+  font-size: 13px;
+}
+
+.admin_banner_destroy{
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 30px;
+}
+
+.admin_destroy_btn_bar{
+  width: 70%;
+  height: 20%;
+  background-color: white;
+}
+
+.admin_banner_edit_form-group_add_btn{
+  width:  30px;
+  height:  30px;
+  background-color: #07bc69;
+  border: none;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5%;
+  cursor: pointer;
+}
+
+.admin_banner_edit_form-group_add_btn_bar, 
+.admin_banner_edit_form-group_add_btn_vertical{
+  position: absolute;
+  background-color: white;
+  border-radius: 2px;
+}
+
+.admin_banner_edit_form-group_add_btn_bar{
+  width: 60%;
+  height: 10%;
+}
+
+.admin_banner_edit_form-group_add_btn_vertical{
+  width: 10%;
+  height: 60%;
+}
+
+.admin_banner_submit{
+ display: block;
+ margin: 10px auto;
+ background-color: #646464;
+ border: none;
+ color: white;
+ width: 150px;
+ height: 30px;
+ cursor: pointer;
+}
+
+.banner_edit_form-group_add_form{
+  margin: 5px auto 0 8%;
+  display: flex;
+  align-items: center;
+}
+
+.admin_banner_images_preview {
+    width: 150px; 
+    height: 100px; 
+    object-fit: contain; 
+    background-color: #f0f0f0;
+    position: relative;
+    display: block;
+    background-color: transparent;
+    object-fit: contain;
+}

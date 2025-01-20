@@ -20,12 +20,10 @@ return new class extends Migration
             $table->string('email', 255);
             $table->string('password', 255);
             $table->string('profile_image', 255);
-            $table->integer('grade_id');
+            $table->unsignedBigInteger('grade_id');
             $table->timestamps();
 
-            // マイグレーション実行のために一時コメントアウト。
-            // gradesテーブルをpullできた後でコメントアウトは解除。
-            // $table->foreign('grade_id')->references('id')->on('grades');
+            $table->foreign('grade_id')->references('id')->on('grades');
         });
     }
 
