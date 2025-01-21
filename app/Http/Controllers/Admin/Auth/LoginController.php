@@ -39,6 +39,9 @@ class LoginController extends Controller
         if(Auth::guard('admin')->attempt($request->only('email','password'))){
             return redirect()->intended('/admin/top');
         }
+        //エラー時の処理
+        return back()->withErrors([
+            'email' => 'メールアドレスまたはパスワードが正しくありません。',])->withInput();
     }
 
     /**
@@ -55,11 +58,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        if (app()->environment('local')) { // プッシュ時す
-            $this->middleware('guest:admin', ['except' => ['showLoginForm', 'logout']]);
-        } else {
-            $this->middleware('guest:admin')->except('logout');
-        }
+        $this->middleware('guest:admin')->except('logout');    
     }
 
     public function guard()
