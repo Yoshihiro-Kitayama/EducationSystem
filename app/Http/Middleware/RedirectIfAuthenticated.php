@@ -17,16 +17,16 @@ class RedirectIfAuthenticated
      * @param  string|null  ...$guards
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, ...$guards)
-    {
-        $guards = empty($guards) ? [null] : $guards;
+    
+    public function handle($request, Closure $next, ...$guards)
+{
+    $guard = $guards[0] ?? config('auth.defaults.guard');
 
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
-            }
-        }
-
-        return $next($request);
+    if (Auth::guard($guard)->check()) {
+        return $guard === 'admin' ? redirect('/admin/top') : redirect('/user/top'); // ✅ ユーザーと管理者で分岐
     }
+
+    return $next($request);
+}
+
 }
