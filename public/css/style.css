@@ -1,0 +1,200 @@
+
+/* 新規会員登録はこちら */
+.header {
+    color: gray;
+    text-align: right;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+/* ログイン/新規会員登録 */
+.title {
+    margin-bottom: 60px;
+    font-size: 40px;
+    color: gray;
+}
+
+/* 入力箇所 */
+.info-input {
+    text-align: center;
+    color: gray;
+    font-size: medium;
+}
+
+.navbar {
+    background-color:coral; /* 背景色を薄いグレーに */
+}
+
+.user_common-header {
+    margin-left: -50px;
+}
+
+.user_common-header button {
+    width: auto;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 10px;
+    color: white;
+    background-color: darkcyan;
+    margin: 0 5px;
+}
+
+.submitbtn {
+    text-align: center;
+    font-size: 30px;
+    width: 200px;
+    height: 50px;
+    color: white;
+    background-color: coral;
+    margin-top: 30px;
+}
+
+/* ------------------------------------------------------------------- */
+
+
+
+.banner-slider {
+    width: auto;
+    height: 250px;
+    margin: 10px auto; /* 中央に配置 */
+    overflow: hidden;
+    position: relative; /* ドットの位置調整のため追加 */
+}
+
+.banner-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.banner-item {
+    flex: 0 0 100%;
+}
+
+.banner-item img {
+    width: 100%;
+    height: auto;
+}
+
+.dots {
+    display: flex; /* 追加 */
+    justify-content: center;
+    text-align: center;
+    margin-top: 10px;
+    position: relative;
+    left: 50%; /* 中央に配置 */
+    transform: translateX(-50%); /* 中央に配置 */
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    margin: 10px 10px;
+    border-radius: 50%;
+    background-color: gray;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: black;
+}
+
+/* お知らせ用 */
+
+.info-box {
+    width: 100%; /* コンテナ幅に合わせる */
+    margin: 0 auto;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 20px; /* 余白を追加 */
+}
+
+.info-item {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start; /* 上揃えに変更 */
+}
+
+.info_title {
+    margin-right: 20px; /* 日付とタイトルの間隔を調整 */
+}
+
+.info_link {
+    text-decoration: none;
+}
+
+/* ---------------------------------------------------------- */
+
+/* 配信ページ用↓ */
+
+.back-top {
+    color: black;
+    margin: 10px;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.video-box {
+    display: inline-block;
+    width: 400px;
+    height: 300px;
+    border: 1px solid black; /* 枠線 */
+    margin: 10px;
+}
+
+.video-box-container {
+    display: flex;
+}
+
+.video img {
+    width: 400px;
+    height: 300px;
+}
+
+.completed {
+    text-align: center; /* ボタンを中央揃え */
+}
+
+.completed-btn {
+    /* ボタンのスタイル */
+    width: 170px;
+    height: 55px;
+    font-size: 20px;
+    text-align: center;
+    background-color: coral;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 120px;
+    margin-left: 100px;
+}
+
+.completed-btn.completed {
+    background-color: gray;
+    color: white;
+}
+
+
+.grade {
+    width: 150px;
+    height: 36px;
+    font-size: 20px;
+    border: 1px solid white;
+    border-radius: 15px;
+    color: white;
+    background-color: rgb(78, 200, 202);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.curriculum-title {
+    font-size: 30px;
+    margin-top: 20px;
+}
+
+
+
+
+.test {
+    font-size: 100px;
+}

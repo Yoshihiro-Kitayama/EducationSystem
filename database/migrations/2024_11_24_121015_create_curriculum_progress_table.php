@@ -24,7 +24,6 @@ return new class extends Migration
             // curriculumsテーブルをpullできた後でコメントアウトは解除。
             // $table->foreign('curriculumus_id')->references('id')->on('curriculums');
 
-            $table->foreign('users_id')->references('id')->on('users');
         });
     }
 
