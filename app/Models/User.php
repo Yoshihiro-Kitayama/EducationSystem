@@ -45,6 +45,15 @@ class User extends Authenticatable
      */
     public function clearChecks()
     {
-        return $this->hasMany(CurriculumClearCheck::class, 'users_id');
+        return $this->hasMany(CurriculumClearCheck::class, 'users_id', 'id');
     }
+
+    public function getProfileImageUrlAttribute()
+    {
+        return $this->profile_image
+            ? asset('storage/' . $this->profile_image) // ✅ `storage/` を追加
+            : asset('images/default.png');
+    }
+    
+
 }

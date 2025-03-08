@@ -9,6 +9,7 @@ use App\Http\Controllers\User\ArticleController as UserArticleController;
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\ProgressController;
+use App\Http\Controllers\User\DeliveryController;
 
 
 
@@ -30,9 +31,17 @@ Route::prefix('user')->name('user.')->group(function () {
     });
     
     Route::middleware(['auth'])->group(function () {
+        
         Route::get('/progress', [ProgressController::class, 'index'])->name('progress.index');
+    
     });
 });
+
+Route::middleware(['auth:user'])->prefix('user')->group(function () {
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('user.profile.edit');
+    Route::put('/profile/update', [ProfileController::class, 'update'])->name('user.profile.update'); // ✅ PUT メソッド
+});
+
 
 
 // 管理者認証ルート
@@ -85,5 +94,11 @@ Route::prefix('user')->name('user.')->group(function () {
 //ユーザーお知らせページ
 Route::get('/article/{id}', [UserArticleController::class, 'user_article'])->name('article.article');
 
+//ユーザー配信ページ
+Route::get('/delivery/{curriculum}', [DeliveryController::class, 'show'])
+->name('curriculum.delivery'); // ✅ `user.curriculum.delivery` になる
+
     });
+    
+            
 });

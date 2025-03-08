@@ -1,0 +1,78 @@
+/* 記事編集ページ専用CSS */
+
+/* コンテナ */
+.container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+}
+
+/* 戻るリンク */
+.back-link {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+/* タイトル */
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* フォーム全体 */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* フォームの各入力グループ */
+.form-group {
+    display: flex;
+    align-items: center; /* ラベルと入力欄の高さを揃える */
+    margin-bottom: 15px;
+}
+
+/* ラベル */
+label {
+    font-size: 16px;
+    width: 120px;  /* ラベルの固定幅 */
+    text-align: right;
+    margin-right: 10px;
+}
+
+/* 入力フィールド */
+input, textarea {
+    flex: 1;  /* 残りのスペースを埋める */
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* 入力フィールドの高さ調整 */
+textarea {
+    height: 100px;
+}
+
+/* 登録ボタン */
+button {
+    display: block;
+    width: 120px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #666;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* ボタンホバー時 */
+button:hover {
+    background-color: #444;
+}

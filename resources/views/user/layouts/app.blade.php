@@ -11,7 +11,7 @@
         <ul class="navigation">
             <li><a href="#">時間割</a></li>
             <li><a href="{{ route('user.progress.index') }}">授業進捗</a></li>
-            <li><a href="#">プロフィール設定</a></li>
+            <li><a href="{{ route('user.profile.edit') }}">プロフィール設定</a></li>
         </ul>
         <ul class="auth">
     @if(Auth::guard('user')->check())

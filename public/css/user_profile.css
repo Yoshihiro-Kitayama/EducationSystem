@@ -1,0 +1,105 @@
+.profile-edit-container {
+    max-width: 600px;
+    margin: 80px auto;
+}
+
+.back-link {
+    display: block;
+    margin-bottom: 20px;
+    color: #333;
+    text-decoration: none;
+}
+
+/* プロフィール画像とアップロード部分を横並び */
+.profile-image-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* プロフィール画像のサイズ固定 */
+.profile-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* 画像の横に配置するテキストを縦に並べる */
+.profile-image-text {
+    display: flex;
+    flex-direction: column;
+}
+
+/* プロフィール画像ラベル */
+.profile-image-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* カスタムファイルアップロードボタン（枠線あり） */
+.custom-file-upload {
+    display: inline-block;
+    background: none;  /* 背景色なし */
+    color: inherit;
+    padding: 8px 12px;
+    border: 1px solid #ccc;  /* 枠線追加 */
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* デフォルトの input[type="file"] を非表示 */
+.custom-file-upload input[type="file"] {
+    display: none;
+}
+
+/* 各フォーム項目 */
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    width: 120px;
+    font-weight: bold;
+}
+
+.form-group input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* パスワード変更リンク（ボタン風：背景色なし、枠線あり） */
+.change-password-btn {
+    display: inline-block;
+    padding: 8px 12px;
+    background: none;      /* 背景色なし */
+    color: inherit;        /* テキスト色は継承 */
+    border: 1px solid #ccc; /* 枠線を残す */
+    border-radius: 5px;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 登録ボタン（中央寄せ） */
+.save-button {
+    padding: 10px 20px;
+    background: coral;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+}
+
+.save-button:hover {
+    background: #e57350;
+}

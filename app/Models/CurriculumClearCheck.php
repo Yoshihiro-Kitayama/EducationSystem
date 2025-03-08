@@ -9,13 +9,16 @@ class CurriculumClearCheck extends Model
 {
     use HasFactory;
 
-    protected $table = 'grades_clear_checks'; // テーブル名を明示
+    protected $table = 'curriculum_progress'; // 正しいテーブル名を指定
+
 
     protected $fillable = [
         'users_id',
         'grade_id',
+        'curriculums_id', // 追加
         'clear_flg',
     ];
+    
 
     /**
      * ユーザーとのリレーション
@@ -32,4 +35,13 @@ class CurriculumClearCheck extends Model
     {
         return $this->belongsTo(Grade::class, 'grade_id');
     }
+
+    /**
+ * カリキュラムとのリレーション
+ */
+public function curriculum()
+{
+    return $this->belongsTo(Curriculum::class, 'curriculums_id');
+}
+
 }

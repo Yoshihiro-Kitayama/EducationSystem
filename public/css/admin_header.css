@@ -47,39 +47,3 @@ body {
     color: white;
     font-size: 16px;
 }
-
-/* ページ全体のコンテナ */
-.container {
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 20px;
-    background: white;
-}
-
-/* タイトル */
-h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-/* フォームのラベル */
-label {
-    display: block;
-    font-size: 16px;
-    margin: 10px 0 5px;
-}
-
-/* フォームの入力フィールド */
-input, textarea {
-    width: 100%;
-    padding: 8px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-
-
-button:hover {
-    background-color: #444;
-}

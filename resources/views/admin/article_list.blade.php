@@ -28,8 +28,8 @@
             <tbody>
                 @foreach($articles as $article)
                     <tr>
-                        <td>{{ \Carbon\Carbon::parse($article->updated_at)->format('Y年m月d日') }}</td>
-                        <td>{{ $article->title }}</td>
+                    <td>{{ \Carbon\Carbon::parse($article->posted_date)->format('Y年m月d日') }}</td>
+                    <td>{{ $article->title }}</td>
                         <td>
                             <div class="action-buttons">
                                 <!-- 変更ボタン -->

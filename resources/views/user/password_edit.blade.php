@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="password-change-container">
-    <a href="{{ route('user.password.change') }}" class="back-link">&larr; 戻る</a>
+    <a href="{{ route('user.profile.edit') }}" class="back-link">&larr; 戻る</a>
     <h1 class="title">パスワード変更</h1>
     
     <!-- CSSの適用 -->
