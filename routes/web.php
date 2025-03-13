@@ -12,9 +12,10 @@ use App\Http\Controllers\User\ProgressController;
 use App\Http\Controllers\User\DeliveryController;
 
 
-
-// ユーザー認証ルート
+// ユーザー用ルート (user)
 Route::prefix('user')->name('user.')->group(function () {
+
+    // 未認証ユーザー向け (ゲスト)
     Route::middleware('guest:user')->group(function () {
         Route::get('/login', [UserLoginController::class, 'showLoginForm'])->name('login');
         Route::post('/login', [UserLoginController::class, 'login']);
@@ -22,30 +23,37 @@ Route::prefix('user')->name('user.')->group(function () {
         Route::post('/register', [UserRegisterController::class, 'register']);
     });
 
+    // 認証済みユーザー向け (ログイン必須)
     Route::middleware('auth:user')->group(function () {
         Route::get('/top', function () {
-            return view('user.top');  // ✅ このルートを追加！
+            return view('user.top');
         })->name('top');
 
         Route::post('/logout', [UserLoginController::class, 'logout'])->name('logout');
-    });
-    
-    Route::middleware(['auth'])->group(function () {
-        
+
+        // プロフィール関連
+        Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+        Route::get('/profile/password/change', [ProfileController::class, 'showChangePasswordForm'])->name('password.change');
+        Route::post('/profile/password/update', [ProfileController::class, 'changePassword'])->name('password.update');
+
+        // 授業進捗
         Route::get('/progress', [ProgressController::class, 'index'])->name('progress.index');
-    
+
+        // 記事（お知らせ）
+        Route::get('/article/{id}', [UserArticleController::class, 'user_article'])->name('article.article');
+
+        // ユーザー配信ページ
+        Route::get('/delivery/{curriculum}', [DeliveryController::class, 'show'])->name('curriculum.delivery');
     });
-});
 
-Route::middleware(['auth:user'])->prefix('user')->group(function () {
-    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('user.profile.edit');
-    Route::put('/profile/update', [ProfileController::class, 'update'])->name('user.profile.update'); // ✅ PUT メソッド
 });
 
 
-
-// 管理者認証ルート
+// 管理者用ルート (admin)
 Route::prefix('admin')->name('admin.')->group(function () {
+
+    // 未認証管理者向け (ゲスト)
     Route::middleware('guest:admin')->group(function () {
         Route::get('/login', [AdminLoginController::class, 'showLoginForm'])->name('login');
         Route::post('/login', [AdminLoginController::class, 'login']);
@@ -53,52 +61,24 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/register', [AdminRegisterController::class, 'register']);
     });
 
-
-
+    // 認証済み管理者向け (ログイン必須)
     Route::middleware('auth:admin')->group(function () {
         Route::post('/logout', [AdminLoginController::class, 'logout'])->name('logout');
+
+        // 管理者ダッシュボード
+        Route::get('/top', function () {
+            return view('admin.top');
+        })->name('dashboard');
+
+        // 記事管理
+        Route::prefix('article')->name('article.')->group(function () {
+            Route::get('/list', [AdminArticleController::class, 'list'])->name('list');
+            Route::get('/create', [AdminArticleController::class, 'create'])->name('create');
+            Route::post('/store', [AdminArticleController::class, 'store'])->name('store');
+            Route::get('/{id}/edit', [AdminArticleController::class, 'edit'])->name('edit');
+            Route::put('/{id}', [AdminArticleController::class, 'update'])->name('update');
+            Route::delete('/{id}', [AdminArticleController::class, 'destroy'])->name('destroy');
+        });
     });
-});
 
-// 管理者用ダッシュボード
-Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/top', function () {
-        return view('admin.top'); // 適切な Blade ファイルを指定
-    })->name('dashboard');
-});
-
-
-
-// 管理者用お知らせ関連ルート
-Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function () {
-    Route::get('article/list', [AdminArticleController::class, 'list'])->name('article.list'); // ✅ 記事一覧
-    Route::get('article/create', [AdminArticleController::class, 'create'])->name('article.create'); // ✅ 記事作成
-    Route::post('article/store', [AdminArticleController::class, 'store'])->name('article.store'); // ✅ 記事保存
-    Route::get('article/{id}/edit', [AdminArticleController::class, 'edit'])->name('article.edit');
-    Route::put('article/{id}', [AdminArticleController::class, 'update'])->name('article.update');
-    Route::delete('article/{id}', [AdminArticleController::class, 'destroy'])->name('article.destroy');
-    
-});
-
-
-
-// ユーザープロフィール関連ルート
-Route::prefix('user')->name('user.')->group(function () {
-    Route::middleware('auth:user')->group(function () {
-        Route::get('/profile/password/change', [ProfileController::class, 'showChangePasswordForm'])
-            ->name('password.change');
-
-        Route::post('/profile/password/update', [ProfileController::class, 'changePassword'])
-            ->name('password.update');
-
-//ユーザーお知らせページ
-Route::get('/article/{id}', [UserArticleController::class, 'user_article'])->name('article.article');
-
-//ユーザー配信ページ
-Route::get('/delivery/{curriculum}', [DeliveryController::class, 'show'])
-->name('curriculum.delivery'); // ✅ `user.curriculum.delivery` になる
-
-    });
-    
-            
 });

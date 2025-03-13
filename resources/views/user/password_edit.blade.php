@@ -13,24 +13,28 @@
     @endif
 
     <form action="{{ route('user.password.update') }}" method="POST">
-        @csrf
-        
-        <label for="old_password">旧パスワード</label>
-        <input type="password" name="old_password" id="old_password" required>
-        @error('old_password')
-            <p class="error-message">{{ $message }}</p>
-        @enderror
+    @csrf
+    
+    <label for="old_password">旧パスワード</label>
+    <input type="password" name="old_password" id="old_password">
+    @error('old_password')
+        <p class="error-message">{{ $message }}</p>
+    @enderror
 
-        <label for="new_password">新パスワード</label>
-        <input type="password" name="new_password" id="new_password" required>
-        @error('new_password')
-            <p class="error-message">{{ $message }}</p>
-        @enderror
+    <label for="new_password">新パスワード</label>
+    <input type="password" name="new_password" id="new_password">
+    @error('new_password')
+        <p class="error-message">{{ $message }}</p>
+    @enderror
 
-        <label for="new_password_confirmation">新パスワード確認</label>
-        <input type="password" name="new_password_confirmation" id="new_password_confirmation" required>
+    <label for="new_password_confirmation">新パスワード確認</label>
+    <input type="password" name="new_password_confirmation" id="new_password_confirmation">
+    @error('new_password_confirmation')
+        <p class="error-message">{{ $message }}</p>
+    @enderror
 
-        <button type="submit">登録</button>
-    </form>
+    <button type="submit">登録</button>
+</form>
+
 </div>
 @endsection
