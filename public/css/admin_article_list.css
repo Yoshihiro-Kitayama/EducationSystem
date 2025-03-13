@@ -1,0 +1,109 @@
+/* お知らせ一覧ページ専用のCSS */
+
+/* 全体のコンテナ */
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+}
+
+/* タイトル */
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* 戻るリンク */
+.back-link {
+    display: inline-block;
+    margin-bottom: 15px;
+    text-decoration: none;
+    color: #007bff;
+    font-size: 16px;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* 新規登録ボタン */
+.btn-primary {
+    display: inline-block;
+    padding: 8px 15px;
+    font-size: 16px;
+    color: white;
+    background-color: #17a2b8;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* テーブルスタイル */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* 🛑 ヘッダー部分のボーダー（下線）を削除 */
+.table thead th {
+    text-align: left;
+    font-size: 16px;
+    padding: 10px;
+    border-bottom: none !important;  /* ✅ 下線を完全に削除 */
+    background-color: transparent;  /* ✅ 背景色を削除 */
+}
+
+/* データ行 */
+.table tbody td {
+    padding: 10px;
+    border-bottom: none;  /* ✅ 各データ行のボーダー（線）を削除 */
+}
+
+/* アクションボタン（変更・削除） */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* 変更ボタン */
+.btn-info, .btn-delete {
+    display: inline-block;
+    padding: 8px 15px;
+    font-size: 14px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* 変更ボタン（青） */
+.btn-info {
+    background-color: #17a2b8;
+}
+
+.btn-info:hover {
+    background-color: #138496;
+}
+
+/* 削除ボタン（赤） */
+.btn-delete {
+    background-color: #dc3545;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+}
+
+/* 削除ボタンをフォーム内で中央揃え */
+form {
+    display: inline-block;
+    margin: 0;
+}

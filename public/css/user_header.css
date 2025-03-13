@@ -1,0 +1,57 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    background-color: coral;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+main {
+    padding-top: 60px; /* ヘッダーの高さ分だけメインコンテンツを下げる */
+}
+
+.header ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.header ul li {
+    list-style: none;
+    margin: 0 10px;
+}
+
+.header ul:first-child li {
+    background-color: #149397;
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+.header ul:first-child li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+.header ul:last-child li a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.header ul:last-child {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}

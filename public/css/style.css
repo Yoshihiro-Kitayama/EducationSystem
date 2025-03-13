@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.register-container, .login-container {
+    width: 300px;
+    margin: 100px auto;
+}
+
+h2 {
+    font-size: 24px;
+    color: #666;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #FF7F50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+a {
+    display: block;
+    margin-top: 10px;
+    color: #666;
+}
