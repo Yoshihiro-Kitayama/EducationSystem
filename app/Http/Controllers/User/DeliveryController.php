@@ -7,6 +7,7 @@ use App\Models\Curriculum;
 use App\Models\Grade;
 use App\Models\CurriculumProgress;
 use App\Models\DeliveryTimes;
+use Carbon\Carbon;
 
 use App\Http\Controllers\Controller;
 
@@ -18,38 +19,50 @@ class DeliveryController extends Controller
     $this->middleware('auth')->except('showLogin');
 }
 
-public function showDelivery(Request $request)
+// 授業一覧ページの表示
+public function showDelivery($grade_id)
 {
-    $curriculums = Curriculum::all();
     $grades = Grade::all();
 
-    $curriculumId = request()->segment(3);
-    $curriculum = Curriculum::find($curriculumId);
+    $curriculums = Curriculum::where('grade_id', $grade_id)->get();
 
-    // 現在のユーザーの受講状況を取得
-    if ($curriculum) { // $curriculum が存在する場合のみ
-        $curriculumProgress = CurriculumProgress::where('curriculumus_id', $curriculum->id)
-                                                ->where('users_id', auth()->id())
-                                                ->first();
-    } else {
-        $curriculumProgress = null; // または他の適切な値を設定
+    $curriculum = $curriculums->first();
+
+    $curriculumProgress = null;
+
+    $grade = null;
+
+    $deliveryPeriod = [];
+
+    if ($curriculum)
+    {
+            $curriculumProgress = CurriculumProgress::where('curriculums_id', $curriculum->id)
+                                                    ->where('users_id', auth()->id())
+                                                    ->first();
+
+        $grade = Grade::find($curriculum->grade_id);
+
+        $now = Carbon::now();
+
+        foreach ($curriculums as $item)
+        {
+            $deliveryTime = DeliveryTimes::where('curriculums_id', $item->id)->first();
+            if ($deliveryTime) {
+                $deliveryFrom = Carbon::parse($deliveryTime->delivery_from);
+                $deliveryTo = Carbon::parse($deliveryTime->delivery_to);
+                $deliveryPeriod[$item->id] = $now->between($deliveryFrom, $deliveryTo);
+            } else {
+                // delivery_times にデータがない場合は配信期間外
+                $deliveryPeriod[$item->id] = false;
+            }
+        }
     }
 
-    // $deliveryTime = DeliveryTimes::where('curriculums_id', $curriculumId)->first();
-
-    // $now = now();
-
-    // $timeOut = false;
-    // if ($deliveryTime && $deliveryTime->delivery_from <= $now) {
-    //     $timeOut = true;
-    // }
-
-    // return view('user.layouts.delivery', compact('curriculums', 'grades', 'curriculum', 'curriculumProgress', 'timeOut'));
-    return view('user.layouts.delivery', compact('curriculums', 'grades', 'curriculum', 'curriculumProgress'));
+    return view('user.layouts.delivery', compact('curriculums', 'grades', 'curriculum', 'curriculumProgress', 'grade', 'deliveryPeriod'));
 }
 
 
-    // クリアフラグ↓
+    // 受講しましたボタン↓
 
     public function updateProgress(Request $request){
 
@@ -57,7 +70,7 @@ public function showDelivery(Request $request)
         $userId = auth()->id();
 
         try {
-            $curriculumProgress = CurriculumProgress::where('curriculumus_id', $curriculumId)
+            $curriculumProgress = CurriculumProgress::where('curriculums_id', $curriculumId)
                                                     ->where('users_id', $userId)
                                                     ->first();
 

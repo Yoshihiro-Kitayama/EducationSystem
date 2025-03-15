@@ -11,36 +11,43 @@
 <div class="video-box-container">
 
     <div class="video-box">
-        @foreach($curriculums as $curriculum)
+    @foreach($curriculums as $curriculum)
         <div class="video">
-            <a href="{{ $curriculum->video_url }}" target="_blank">
-                <img src="{{ asset($curriculum->thumbnail) }}">
-            </a>
-        </div>
-        @endforeach
+@if ($curriculum->alway_delivery_flg == 1 && isset($deliveryPeriod[$curriculum->id]) && $deliveryPeriod[$curriculum->id])                <div class="video-iframe-container">
+                    <iframe src="{{ $curriculum->video_url }}" frameborder="0" class="video-iframe"></iframe>
+                </div>
+
+            @else
+                <div class="thumbnail-container">
+                    <img src="{{ asset($curriculum->thumbnail) }}" class="thumbnail">
+                </div>
+            @endif
+
+    </div>
+    @endforeach
 
     </div>
 
 <div class="completed">
     @if ($curriculum)
-        <button id="completed-btn" class="completed-btn" data-curriculum-id="{{ $curriculum->id }}"
-            @if ($curriculumProgress && $curriculumProgress->clear_flg == 1)
-                disabled style="background-color: gray;"
-            @endif>
-            {{ $curriculumProgress && $curriculumProgress->clear_flg == 1 ? '受講済み' : '受講しました' }}
-        </button>
+            <button id="completed-btn" class="completed-btn" data-curriculum-id="{{ $curriculum->id }}"
+                @if ($curriculumProgress && $curriculumProgress->clear_flg == 1 || $curriculum->alway_delivery_flg == 0 || !$deliveryPeriod[$curriculum->id])
+                    disabled style="background-color: gray;"
+                @endif>
+                {{ $curriculumProgress && $curriculumProgress->clear_flg == 1 ? '受講済み' : '受講しました' }}
+            </button>
     @else
         <p>カリキュラムが見つかりません。</p>
     @endif
-</div>
+    </div>
 
 </div>
 
 
     <div class="grade">
-        @foreach($grades as $grade)
+        @if ($grade)
         <p>{{ $grade->name }}</p>
-        @endforeach
+        @endif
     </div>
 
     @foreach($curriculums as $curriculum)

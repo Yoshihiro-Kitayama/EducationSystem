@@ -10,7 +10,7 @@ class CurriculumProgress extends Model
     use HasFactory;
 
     protected $fillable = [
-        'curriculumus_id',
+        'curriculums_id',
         'users_id',
         'clear_flg',
     ];

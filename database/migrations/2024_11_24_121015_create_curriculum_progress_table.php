@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('curriculum_progress', function (Blueprint $table) {
             $table->id();
-            $table->integer('curriculumus_id');
+            $table->integer('curriculums_id');
             $table->integer('users_id');
             $table->tinyInteger('clear_flg')->default(0);
             $table->timestamps();
 
             // マイグレーション実行のために一時コメントアウト。
             // curriculumsテーブルをpullできた後でコメントアウトは解除。
-            // $table->foreign('curriculumus_id')->references('id')->on('curriculums');
+            $table->foreign('curriculums_id')->references('id')->on('curriculums');
 
         });
     }

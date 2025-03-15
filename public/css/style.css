@@ -1,4 +1,6 @@
 
+/* ---------------ログイン画面--------------- */
+
 /* 新規会員登録はこちら */
 .header {
     color: gray;
@@ -21,6 +23,27 @@
     font-size: medium;
 }
 
+
+/* ---------------新規会員登録--------------- */
+
+.submitbtn {
+    text-align: center;
+    font-size: 30px;
+    width: 200px;
+    height: 50px;
+    color: white;
+    background-color: coral;
+    margin-top: 30px;
+}
+
+.error-message {
+    color: red;
+    font-size: 10px;
+}
+
+
+/* -------------共通ヘッダー------------- */
+
 .navbar {
     background-color:coral; /* 背景色を薄いグレーに */
 }
@@ -39,18 +62,8 @@
     margin: 0 5px;
 }
 
-.submitbtn {
-    text-align: center;
-    font-size: 30px;
-    width: 200px;
-    height: 50px;
-    color: white;
-    background-color: coral;
-    margin-top: 30px;
-}
 
-/* ------------------------------------------------------------------- */
-
+/* ------------------バナー画像------------------ */
 
 
 .banner-slider {
@@ -124,7 +137,7 @@
 
 /* ---------------------------------------------------------- */
 
-/* 配信ページ用↓ */
+/* -------------配信ページ用↓------------- */
 
 .back-top {
     color: black;
@@ -134,6 +147,7 @@
 }
 
 .video-box {
+    cursor: pointer;
     display: inline-block;
     width: 400px;
     height: 300px;
@@ -141,11 +155,18 @@
     margin: 10px;
 }
 
+
+
 .video-box-container {
     display: flex;
 }
 
 .video img {
+    width: 400px;
+    height: 300px;
+}
+
+.video-iframe {
     width: 400px;
     height: 300px;
 }

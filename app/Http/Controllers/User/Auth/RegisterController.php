@@ -7,7 +7,8 @@ use App\Models\User;
 // use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+// use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\EducationRequest;
 
 class RegisterController extends Controller
 {
@@ -27,20 +28,15 @@ class RegisterController extends Controller
         return view('user.auth.register');
     }
 
-    public function store(Request $request)
+    public function store(EducationRequest  $request)
     {
-        $validatedData = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'name_kana' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+
 
         $user = User::create([
-            'name' => $validatedData['name'],
-            'name_kana' => $validatedData['name_kana'], // Add name_kana to the created user
-            'email' => $validatedData['email'],
-            'password' => Hash::make($validatedData['password']),
+            'name' => $request->name,
+            'name_kana' => $request->name_kana,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
         ]);
 
         // ログイン処理

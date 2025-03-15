@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('grade_id');
             $table->timestamps();
 
-            // $table->foreign('grade_id')->references('id')->on('grades');
+            $table->foreign('grade_id')->references('id')->on('grades');
         });
     }
 
