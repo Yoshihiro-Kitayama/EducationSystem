@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 // use Illuminate\Support\Facades\Validator;
-use App\Http\Requests\EducationRequest;
+use App\Http\Requests\RegisterRequest;
 
 class RegisterController extends Controller
 {
@@ -28,7 +28,7 @@ class RegisterController extends Controller
         return view('user.auth.register');
     }
 
-    public function store(EducationRequest  $request)
+    public function store(RegisterRequest  $request)
     {
 
 
