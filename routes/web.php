@@ -36,7 +36,7 @@ Route::prefix('user')->namespace('User')->name('user.')->group(function () {
 
         // 認証処理を通過後、TopControllerのindexメソッドを呼び出す
         Route::get('/top', [TopController::class, 'showTop'])->name('show.top');
-        Route::get('/delivery/{grade_id}', [DeliveryController::class, 'showDelivery'])->name('show.delivery');
+        Route::get('/delivery/{curriculum_id}', [DeliveryController::class, 'showDelivery'])->name('show.delivery');
         Route::post('/update-progress', [DeliveryController::class, 'updateProgress'])->name('curriculum.complete');
         Route::get('/article', [ArticleController::class, 'showArticle'])->name('show.article');
 

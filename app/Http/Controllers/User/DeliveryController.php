@@ -20,45 +20,31 @@ class DeliveryController extends Controller
 }
 
 // 授業一覧ページの表示
-public function showDelivery($grade_id)
+public function showDelivery($curriculum_id)
 {
-    $grades = Grade::all();
+    // $grades = Grade::all();
 
-    $curriculums = Curriculum::where('grade_id', $grade_id)->get();
+    $curriculum = Curriculum::find($curriculum_id);
 
-    $curriculum = $curriculums->first();
 
-    $curriculumProgress = null;
-
-    $grade = null;
-
-    $deliveryPeriod = [];
-
-    if ($curriculum)
-    {
-            $curriculumProgress = CurriculumProgress::where('curriculums_id', $curriculum->id)
-                                                    ->where('users_id', auth()->id())
-                                                    ->first();
+        $curriculumProgress = CurriculumProgress::where('curriculums_id', $curriculum->id)
+                ->where('users_id', auth()->id())
+                ->first();
 
         $grade = Grade::find($curriculum->grade_id);
 
-        $now = Carbon::now();
+        $deliveryPeriod = false;
 
-        foreach ($curriculums as $item)
-        {
-            $deliveryTime = DeliveryTimes::where('curriculums_id', $item->id)->first();
+        $now = Carbon::now();
+        $deliveryTime = DeliveryTimes::where('curriculums_id', $curriculum->id)->first();
+
             if ($deliveryTime) {
                 $deliveryFrom = Carbon::parse($deliveryTime->delivery_from);
                 $deliveryTo = Carbon::parse($deliveryTime->delivery_to);
-                $deliveryPeriod[$item->id] = $now->between($deliveryFrom, $deliveryTo);
-            } else {
-                // delivery_times にデータがない場合は配信期間外
-                $deliveryPeriod[$item->id] = false;
+                $deliveryPeriod = $now->between($deliveryFrom, $deliveryTo);
             }
-        }
-    }
 
-    return view('user.layouts.delivery', compact('curriculums', 'grades', 'curriculum', 'curriculumProgress', 'grade', 'deliveryPeriod'));
+    return view('user.layouts.delivery', compact('curriculum', 'curriculumProgress', 'grade', 'deliveryPeriod'));
 }
 
 

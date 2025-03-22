@@ -11,9 +11,9 @@
 <div class="video-box-container">
 
     <div class="video-box">
-    @foreach($curriculums as $curriculum)
         <div class="video">
-@if ($curriculum->alway_delivery_flg == 1 && isset($deliveryPeriod[$curriculum->id]) && $deliveryPeriod[$curriculum->id])                <div class="video-iframe-container">
+        @if ($curriculum->alway_delivery_flg == 1 && $deliveryPeriod)
+                <div class="video-iframe-container">
                     <iframe src="{{ $curriculum->video_url }}" frameborder="0" class="video-iframe"></iframe>
                 </div>
 
@@ -24,14 +24,13 @@
             @endif
 
     </div>
-    @endforeach
 
     </div>
 
 <div class="completed">
     @if ($curriculum)
             <button id="completed-btn" class="completed-btn" data-curriculum-id="{{ $curriculum->id }}"
-                @if ($curriculumProgress && $curriculumProgress->clear_flg == 1 || $curriculum->alway_delivery_flg == 0 || !$deliveryPeriod[$curriculum->id])
+                @if ($curriculumProgress && $curriculumProgress->clear_flg == 1 || $curriculum->alway_delivery_flg == 0 || !$deliveryPeriod)
                     disabled style="background-color: gray;"
                 @endif>
                 {{ $curriculumProgress && $curriculumProgress->clear_flg == 1 ? '受講済み' : '受講しました' }}
@@ -50,7 +49,6 @@
         @endif
     </div>
 
-    @foreach($curriculums as $curriculum)
     <div class="curriculum-info">
         <div class="curriculum-title">
             {{ $curriculum->title }}
@@ -64,7 +62,6 @@
         </div>
 
     </div>
-    @endforeach
 
 
 @endsection

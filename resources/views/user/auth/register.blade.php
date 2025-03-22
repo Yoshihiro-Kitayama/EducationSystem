@@ -92,9 +92,9 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-end">パスワード確認</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control @error('password-confirm') is-invalid @enderror" name="password-confirm" autocomplete="new-password">
 
-                                @error('password_confirmation')
+                                @error('password-confirm')
                                     <span class="error-message" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
