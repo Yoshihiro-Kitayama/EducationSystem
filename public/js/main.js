@@ -46,6 +46,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     const completedBtn = document.getElementById('completed-btn');
+    const messageContainer = document.getElementById('message-container');
 
     if (completedBtn) {
         completedBtn.addEventListener('click', () => {

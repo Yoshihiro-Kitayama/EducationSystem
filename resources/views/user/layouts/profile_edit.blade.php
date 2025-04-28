@@ -1,6 +1,6 @@
 @extends('user.layouts.app')
 
-@section('title', 'お知らせ')
+@section('title', 'プロフィール設定')
 
 @section('content')
 
@@ -14,7 +14,7 @@
 
 <div>
     <h1 class="test">
-        時間割ページ
+        プロフィール設定ページ
     </h1>
 </div>
 

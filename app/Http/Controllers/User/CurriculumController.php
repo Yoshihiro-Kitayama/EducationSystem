@@ -25,25 +25,25 @@ class CurriculumController extends Controller
 
     // クリアフラグ↓
 
-    public function complete(Request $request, $curriculum_id)
-    {
-        $user_id = auth()->id(); // ログインユーザーのIDを取得
-        $grade = GradesClearCheck::where('curriculumus_id', $curriculum_id)
-            ->where('users_id', $user_id)
-            ->first();
+    // public function complete(Request $request, $curriculum_id)
+    // {
+    //     $user_id = auth()->id(); // ログインユーザーのIDを取得
+    //     $grade = GradesClearCheck::where('curriculumus_id', $curriculum_id)
+    //         ->where('users_id', $user_id)
+    //         ->first();
 
-        if ($grade) {
-            $grade->clear_flg = $grade->clear_flg == 1 ? 0 : 1;
-            $grade->save();
-        } else {
-            GradesClearCheck::create([
-                'curriculumus_id', $curriculum_id,
-                'users_id', $user_id,
-                'clear_flg', 1
-            ]);
-        }
+    //     if ($grade) {
+    //         $grade->clear_flg = $grade->clear_flg == 1 ? 0 : 1;
+    //         $grade->save();
+    //     } else {
+    //         GradesClearCheck::create([
+    //             'curriculumus_id', $curriculum_id,
+    //             'users_id', $user_id,
+    //             'clear_flg', 1
+    //         ]);
+    //     }
 
-        return redirect()->back(); // 元のページにリダイレクト
-    }
+    //     return redirect()->back(); // 元のページにリダイレクト
+    // }
 
 }

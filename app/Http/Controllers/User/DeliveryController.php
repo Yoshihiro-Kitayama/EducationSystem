@@ -22,7 +22,6 @@ class DeliveryController extends Controller
 // 授業一覧ページの表示
 public function showDelivery($curriculum_id)
 {
-    // $grades = Grade::all();
 
     $curriculum = Curriculum::find($curriculum_id);
 

@@ -56,6 +56,7 @@ public function messages() {
         'name_kana.max' => ':attributeは:max字以内で入力してください。',
         'name_kana.regex' => ':attributeはカタカナ入力のみ有効です。',
         'email.required' => ':attributeは必須項目です。',
+        'email.email' => '入力したメールアドレスは有効ではありません。',
         'password.required' => ':attributeは入力必須です。',
         'password.min' => ':attributeは:min字以上で入力してください。',
         'password.confirmed' => 'パスワードと確認用パスワードが一致しません。',

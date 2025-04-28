@@ -68,7 +68,7 @@
 
 .banner-slider {
     width: auto;
-    height: 250px;
+    height: 300px;
     margin: 10px auto; /* 中央に配置 */
     overflow: hidden;
     position: relative; /* ドットの位置調整のため追加 */
@@ -85,7 +85,8 @@
 
 .banner-item img {
     width: 100%;
-    height: auto;
+    height: 300px;
+    object-fit: cover;
 }
 
 .dots {

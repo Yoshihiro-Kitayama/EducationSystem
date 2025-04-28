@@ -39,7 +39,7 @@
         <p>カリキュラムが見つかりません。</p>
     @endif
     </div>
-
+    <div id="message-container"></div>
 </div>
 
 

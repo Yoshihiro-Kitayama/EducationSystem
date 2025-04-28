@@ -27,9 +27,9 @@
 
                     <div class="user_common-header">
 
-                        <button onclick="location.href='#'" class="user_curriculum_list" >時間割</button>
-                        <button onclick="location.href='#'" class="user_curriculum_progress">授業進捗</button>
-                        <button onclick="location.href='#'" class="user_profile_edit">プロフィール設定</button>
+                        <button onclick="location.href='{{ route('user.show.curriculum') }}'" class="user_curriculum_list" >時間割</button>
+                        <button onclick="location.href='{{ route('user.show.progress') }}'" class="user_curriculum_progress">授業進捗</button>
+                        <button onclick="location.href='{{ route('user.show.profile') }}'" class="user_profile_edit">プロフィール設定</button>
 
                     </div>
 

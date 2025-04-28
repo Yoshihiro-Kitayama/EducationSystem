@@ -7,6 +7,8 @@ use App\Http\Controllers\User\TopController;
 use App\Http\Controllers\User\CurriculumController;
 use App\Http\Controllers\User\DeliveryController;
 use App\Http\Controllers\User\ArticleController;
+use App\Http\Controllers\User\ProgressController;
+use App\Http\Controllers\User\ProfileController;
 
 
 /*
@@ -36,6 +38,9 @@ Route::prefix('user')->namespace('User')->name('user.')->group(function () {
 
         // 認証処理を通過後、TopControllerのindexメソッドを呼び出す
         Route::get('/top', [TopController::class, 'showTop'])->name('show.top');
+        Route::get('/curriculum_list', [CurriculumController::class, 'showCurriculumList'])->name('show.curriculum');
+        Route::get('/progress', [ProgressController::class, 'showProgress'])->name('show.progress');
+        Route::get('/profile', [ProfileController::class, 'showProfileForm'])->name('show.profile');
         Route::get('/delivery/{curriculum_id}', [DeliveryController::class, 'showDelivery'])->name('show.delivery');
         Route::post('/update-progress', [DeliveryController::class, 'updateProgress'])->name('curriculum.complete');
         Route::get('/article', [ArticleController::class, 'showArticle'])->name('show.article');
