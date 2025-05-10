@@ -1,6 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\Auth\LoginController;
+use App\Http\Controllers\User\Auth\RegisterController;
+use App\Http\Controllers\User\TopController;
+use App\Http\Controllers\User\CurriculumController;
+use App\Http\Controllers\User\DeliveryController;
+use App\Http\Controllers\User\ArticleController;
+use App\Http\Controllers\User\ProgressController;
+use App\Http\Controllers\User\ProfileController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +24,25 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+
+Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'store']);
+
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::prefix('user')->namespace('User')->name('user.')->group(function () {
+
+        // 認証処理を通過後、TopControllerのindexメソッドを呼び出す
+        Route::get('/top', [TopController::class, 'showTop'])->name('show.top');
+        Route::get('/curriculum_list', [CurriculumController::class, 'showCurriculumList'])->name('show.curriculum');
+        Route::get('/progress', [ProgressController::class, 'showProgress'])->name('show.progress');
+        Route::get('/profile', [ProfileController::class, 'showProfileForm'])->name('show.profile');
+        Route::get('/delivery/{curriculum_id}', [DeliveryController::class, 'showDelivery'])->name('show.delivery');
+        Route::post('/update-progress', [DeliveryController::class, 'updateProgress'])->name('curriculum.complete');
+        Route::get('/article', [ArticleController::class, 'showArticle'])->name('show.article');
+
 });

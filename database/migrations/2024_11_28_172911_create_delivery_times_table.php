@@ -13,17 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('curriculum_progress', function (Blueprint $table) {
+        Schema::create('delivery_times', function (Blueprint $table) {
             $table->id();
             $table->integer('curriculums_id');
-            $table->integer('users_id');
-            $table->tinyInteger('clear_flg')->default(0);
+            $table->dateTime('delivery_from');
+            $table->dateTime('delivery_to');
             $table->timestamps();
 
-            // マイグレーション実行のために一時コメントアウト。
-            // curriculumsテーブルをpullできた後でコメントアウトは解除。
-            $table->foreign('curriculums_id')->references('id')->on('curriculums');
-
+            // $table->foreign('curriculums_id')->references('id')->on('curriculums');
         });
     }
 
@@ -34,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('curriculum_progress');
+        Schema::dropIfExists('delivery_times');
     }
 };

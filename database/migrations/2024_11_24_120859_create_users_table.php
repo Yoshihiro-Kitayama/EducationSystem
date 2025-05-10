@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255);
-            $table->string('name_kana', 255);
+            $table->string('name_kana', 255)->default('');;
             $table->string('email', 255);
             $table->string('password', 255);
-            $table->string('profile_image', 255);
-            $table->integer('grade_id');
+            $table->string('profile_image')->nullable()->default('');
+            $table->integer('grade_id')->default('1');
             $table->timestamps();
 
             // マイグレーション実行のために一時コメントアウト。
