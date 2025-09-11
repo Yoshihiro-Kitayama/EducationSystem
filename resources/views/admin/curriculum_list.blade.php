@@ -42,7 +42,7 @@
                 @endforeach
             </aside>
             <main class="col-10">
-                <h2 id="selected-grade-name">{{ $selectedGrade->name }}</h2>
+                <h2 id="selected-grade-name">{{ $selectedGrade?->name ?? '学年が選択されていません' }}</h2>
                 <div id="curriculum-container" class="card-container row g-4">
                     @foreach ($curriculums as $curriculum)
                         @include('partials.curriculum_card', ['curriculum' => $curriculum])
