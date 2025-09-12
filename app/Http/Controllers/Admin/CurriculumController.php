@@ -14,19 +14,38 @@ class CurriculumController extends Controller
     // カリキュラム一覧を表示
     public function index($grade_id = null)
     {
-        //$grade_id が指定されていない場合にデフォルト学年を選択
-        if (is_null($grade_id)) {
-            $grade_id = Grade::min('id'); // デフォルト学年を最小IDとする
+        // grades テーブルの最小IDをデフォルト学年として取得
+        $firstGradeId = Grade::min('id');
+
+        // grade_id が指定されていない場合、または存在しない場合にデフォルトにする
+        if (is_null($grade_id) || !Grade::find($grade_id)) {
+            $grade_id = $firstGradeId;
         }
-        
-        //カリキュラムとその関連する配信期間を取得
+
+        // カリキュラムとその関連する配信期間を取得
         $curriculums = Curriculum::with('deliveryTimes')
-                                    ->where('grade_id', $grade_id)
-                                    ->get();
+                            ->where('grade_id', $grade_id)
+                            ->get();
+
         $selectedGrade = Grade::find($grade_id);
+
         // gradesテーブルのデータを取得（学年のリンク用）
         $grades = Grade::all();
+
         return view('admin.curriculum_list', compact('curriculums', 'selectedGrade', 'grades', 'grade_id'));
+    }
+    public function ajaxList($grade_id)
+    {
+        $curriculums = Curriculum::with('deliveryTimes')
+                                ->where('grade_id', $grade_id)
+                                ->get();
+
+        $selectedGrade = Grade::find($grade_id);
+
+        return response()->json([
+            'curriculums' => $curriculums,
+            'selectedGrade' => $selectedGrade
+        ]);
     }
 
     public function edit($curriculums_id)

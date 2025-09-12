@@ -6,34 +6,35 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('curriculums', function (Blueprint $table) {
-            $table->id();
-            $table->string('title',255);
-            $table->string('thumbnail',255)->nullable();
+            // 外部キー作成のため InnoDB に指定
+            $table->engine = 'InnoDB';
+
+            $table->id(); // BIGINT UNSIGNED
+            $table->string('title', 255);
+            $table->string('thumbnail', 255)->nullable();
             $table->longText('description')->nullable();
             $table->mediumText('video_url')->nullable();
             $table->tinyInteger('alway_delivery_flg');
-            $table->integer('grade_id');
+
+            // grade_id の型を grades.id と合わせる
+            $table->unsignedBigInteger('grade_id');
+
             $table->timestamps();
 
-            $table->foreign('grade_id')->references('id')->on('grades');
+            // 外部キー
+            $table->foreign('grade_id')
+                  ->references('id')
+                  ->on('grades')
+                  ->onDelete('cascade'); // 親削除時に自動削除
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('curriculums');
     }
 };
+
